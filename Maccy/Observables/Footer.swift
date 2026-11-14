@@ -67,12 +67,6 @@ class Footer: ItemsContainer {
         }
       },
       FooterItem(
-        title: "about",
-        help: "about_tooltip"
-      ) {
-        AppState.shared.openAbout()
-      },
-      FooterItem(
         title: "quit",
         shortcuts: [KeyShortcut(key: .q)],
         help: "quit_tooltip"

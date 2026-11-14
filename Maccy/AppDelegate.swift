@@ -1,10 +1,20 @@
 import Defaults
 import KeyboardShortcuts
-import Sparkle
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   nonisolated static let isTesting = CommandLine.arguments.contains("enable-testing")
+  #if DEBUG
+  /// Set by the README screenshot test (`-MultipastaTestAppearance dark|light`, testing only).
+  nonisolated static let readmeScreenshotAppearance: String? = isTesting
+    ? UserDefaults.standard.string(forKey: "MultipastaTestAppearance")
+    : nil
+  /// Set by the README screenshot test (`-MultipastaTestAccessibilityGranted YES`, testing only):
+  /// the Quit tab shows Accessibility as granted. Only the display; the ⌘Q guard still checks
+  /// the real permission.
+  nonisolated static let readmeScreenshotAccessibilityGranted: Bool = isTesting
+    && UserDefaults.standard.bool(forKey: "MultipastaTestAccessibilityGranted")
+  #endif
   var panel: FloatingPanel<ContentView>!
 
   @objc
@@ -38,13 +48,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationWillFinishLaunching(_ notification: Notification) { // swiftlint:disable:this function_body_length
     #if DEBUG
     if Self.isTesting {
-      SPUUpdater(hostBundle: Bundle.main,
-                 applicationBundle: Bundle.main,
-                 userDriver: SPUStandardUserDriver(hostBundle: Bundle.main, delegate: nil),
-                 delegate: nil)
-      .automaticallyChecksForUpdates = false
       // Start from a clean slate for the isolated testing preferences.
       UserDefaults.standard.removePersistentDomain(forName: Defaults.Keys.testingSuiteName)
+      // Multipasta pastes on Enter by default. UI tests select items by Enter or click,
+      // so keep Maccy's copy-only behaviour there instead of sending ⌘V to the frontmost app.
+      // This writes to the isolated testing suite only, not to the user's defaults.
+      Defaults[.pasteByDefault] = false
+      // The README screenshot test picks the appearance; `-AppleInterfaceStyle` no longer
+      // changes an app's appearance.
+      if let appearance = Self.readmeScreenshotAppearance {
+        NSApp.appearance = NSAppearance(named: appearance == "dark" ? .darkAqua : .aqua)
+      }
     }
     #endif
 
@@ -112,11 +126,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     panel = FloatingPanel(
       contentRect: NSRect(origin: .zero, size: Defaults[.windowSize]),
-      identifier: Bundle.main.bundleIdentifier ?? "org.p0deje.Maccy",
+      identifier: Bundle.main.bundleIdentifier ?? "com.eddytwist.Multipasta",
       statusBarButton: statusItem.button,
       onClose: { AppState.shared.popup.reset() }
     ) {
       ContentView()
+    }
+
+    // Multipasta: hold ⌘Q to quit the apps listed in Settings → Quit.
+    QuitGuard.shared.start()
+
+    // Multipasta: offer once to import the clipboard history of upstream Maccy.
+    if !Self.isTesting {
+      Task {
+        try? await Task.sleep(for: .seconds(1))
+        MaccyImporter.offerImportIfNeeded()
+      }
     }
   }
 

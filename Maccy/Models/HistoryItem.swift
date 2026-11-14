@@ -250,7 +250,7 @@ class HistoryItem {
   }
 
   nonisolated private static let textRecognitionQueue = DispatchQueue(
-    label: "org.p0deje.Maccy.textRecognition",
+    label: "com.eddytwist.Multipasta.textRecognition",
     qos: .utility
   )
 

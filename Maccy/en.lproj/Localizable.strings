@@ -7,12 +7,12 @@
 "clear_all" = "Clear all";
 "about" = "About";
 "quit" = "Quit";
-"preferences" = "Preferences…";
+"preferences" = "Settings…";
 "clear_alert_message" = "Are you sure you want to clear the history?";
 "clear_alert_comment" = "You can't undo this action.";
 "clear_alert_cancel" = "Cancel";
 "clear_alert_confirm" = "Clear";
-"status_item_accessibility_label" = "Maccy — clipboard history";
+"status_item_accessibility_label" = "Multipasta — clipboard history";
 "status_item_disabled_accessibility_suffix" = "paused";
 "search_clear_accessibility_label" = "Clear search";
 "history_item_pin_action" = "Pin";
@@ -23,3 +23,6 @@
 "history_item_image_accessibility_label_no_app" = "Image, %dx%d";
 "history_item_image_accessibility_generic" = "Image";
 "toolbar_remove_paste_stack_action" = "Stop paste stack";
+"empty_history" = "Copied items appear here";
+"no_matches" = "No matches";
+"about_credits" = "Based on Maccy by Alex Rodionov (MIT)";

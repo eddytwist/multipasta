@@ -132,6 +132,42 @@ extension SharedStateTests {
       #expect(itemDecorator.attributedTitle == nil)
     }
 
+    @Test("Automatic preview opens for an image")
+    func automaticPreviewImage() throws {
+      let image = try #require(NSImage(named: "StatusBarMenuImage"))
+      #expect(historyItemDecorator(image).needsAutomaticPreview)
+    }
+
+    @Test("Automatic preview opens for a file")
+    func automaticPreviewFile() {
+      #expect(historyItemDecorator(URL(fileURLWithPath: "/tmp/foo.bar")).needsAutomaticPreview)
+    }
+
+    @Test("Automatic preview stays closed for short text", arguments: ["foo", "  short line with padding \n"])
+    func automaticPreviewShortText(text: String) {
+      #expect(!historyItemDecorator(text).needsAutomaticPreview)
+    }
+
+    @Test("Automatic preview opens for multi-line text")
+    func automaticPreviewMultiLineText() {
+      #expect(historyItemDecorator("foo\nbar").needsAutomaticPreview)
+    }
+
+    @Test("Automatic preview opens for long text")
+    func automaticPreviewLongText() {
+      let limit = SlideoutController.autoOpenTextLengthLimit
+      #expect(!historyItemDecorator(String(repeating: "a", count: limit)).needsAutomaticPreview)
+      #expect(historyItemDecorator(String(repeating: "a", count: limit + 1)).needsAutomaticPreview)
+    }
+
+    @Test("Automatic preview decision")
+    func automaticPreviewDecision() {
+      #expect(SlideoutController.needsAutomaticPreview(hasImage: true, hasFileURLs: false, text: ""))
+      #expect(SlideoutController.needsAutomaticPreview(hasImage: false, hasFileURLs: true, text: "x"))
+      #expect(!SlideoutController.needsAutomaticPreview(hasImage: false, hasFileURLs: false, text: "short"))
+      #expect(SlideoutController.needsAutomaticPreview(hasImage: false, hasFileURLs: false, text: "a\r\nb"))
+    }
+
     private func historyItemDecorator(
       _ value: String?,
       application: String? = "com.apple.finder"

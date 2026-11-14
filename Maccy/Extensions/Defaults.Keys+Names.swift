@@ -13,7 +13,7 @@ nonisolated struct StorageType: Sendable {
 nonisolated extension Defaults.Keys {
 #if DEBUG
   // UI Tests bundle preferences
-  static let testingSuiteName = "\(Bundle.main.bundleIdentifier ?? "org.p0deje.Maccy").uitests"
+  static let testingSuiteName = "\(Bundle.main.bundleIdentifier ?? "com.eddytwist.Multipasta").uitests"
 
   // When UI tests run with the `enable-testing` argument, window and pin
   // preferences are stored in a separate xcuitest bundle
@@ -48,11 +48,10 @@ nonisolated extension Defaults.Keys {
     suite: preferencesSuite
   )
   static let imageMaxHeight = Key<Int>("imageMaxHeight", default: 40, suite: preferencesSuite)
-  static let lastReviewRequestedAt = Key<Date>("lastReviewRequestedAt", default: Date.now, suite: preferencesSuite)
+  static let maccyImportOffered = Key<Bool>("maccyImportOffered", default: false, suite: preferencesSuite)
   static let menuIcon = Key<MenuIcon>("menuIcon", default: .maccy, suite: preferencesSuite)
   static let migrations = Key<[String: Bool]>("migrations", default: [:], suite: preferencesSuite)
-  static let numberOfUsages = Key<Int>("numberOfUsages", default: 0, suite: preferencesSuite)
-  static let pasteByDefault = Key<Bool>("pasteByDefault", default: false, suite: preferencesSuite)
+  static let pasteByDefault = Key<Bool>("pasteByDefault", default: true, suite: preferencesSuite)
   static let pinOrder = Key<PinOrder>("pinOrder", default: PinOrder(), suite: preferencesSuite)
   static let pinTo = Key<PinsPosition>("pinTo", default: .top, suite: preferencesSuite)
   static let popupPosition = Key<PopupPosition>("popupPosition", default: .cursor, suite: preferencesSuite)
@@ -68,12 +67,14 @@ nonisolated extension Defaults.Keys {
   static let searchVisibility = Key<SearchVisibility>("searchVisibility", default: .always, suite: preferencesSuite)
   static let showSpecialSymbols = Key<Bool>("showSpecialSymbols", default: true, suite: preferencesSuite)
   static let showTitle = Key<Bool>("showTitle", default: true, suite: preferencesSuite)
-  static let size = Key<Int>("historySize", default: 200, suite: preferencesSuite)
+  static let size = Key<Int>("historySize", default: 500, suite: preferencesSuite)
   static let sortBy = Key<Sorter.By>("sortBy", default: .lastCopiedAt, suite: preferencesSuite)
   static let suppressClearAlert = Key<Bool>("suppressClearAlert", default: false, suite: preferencesSuite)
   static let windowSize = Key<NSSize>("windowSize", default: NSSize(width: 450, height: 800), suite: preferencesSuite)
   static let windowPosition = Key<NSPoint>("windowPosition", default: NSPoint(x: 0.5, y: 0.8), suite: preferencesSuite)
-  static let showApplicationIcons = Key<Bool>("showApplicationIcons", default: false, suite: preferencesSuite)
+  static let showApplicationIcons = Key<Bool>("showApplicationIcons", default: true, suite: preferencesSuite)
   static let showHexColorSwatch = Key<Bool>("showHexColorSwatch", default: true, suite: preferencesSuite)
   static let previewWidth = Key<CGFloat>("previewWidth", default: 400, suite: preferencesSuite)
+  // Multipasta: bundle identifiers of the apps where ⌘Q has to be held to quit. Empty means off.
+  static let quitGuardApps = Key<[String]>("quitGuardApps", default: [], suite: preferencesSuite)
 }

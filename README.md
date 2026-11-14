@@ -1,170 +1,199 @@
-> [!WARNING]
-> **Beware of fake websites impersonating Maccy.** Malicious sites (such as `maccyapp.net` and `maccyapp.com`) distribute malware disguised as Maccy. [**maccy.app**](https://maccy.app) is the **only** official website.
+<div align="center">
 
-<img width="128px" src="https://maccy.app/img/maccy/Logo.png" alt="Logo" />
+<img src="docs/icon.png" width="128" height="128" alt="Multipasta icon">
 
-# [Maccy](https://maccy.app)
+<h1>Multipasta</h1>
 
-[![Downloads](https://img.shields.io/github/downloads/p0deje/Maccy/total.svg)](https://github.com/p0deje/Maccy/releases/latest)
-[![Build Status](https://img.shields.io/bitrise/716921b669780314/master?token=3pMiCb5dpFzlO-7jTYtO3Q)](https://app.bitrise.io/app/716921b669780314)
+<p><b>A clipboard history in your menu bar that also stops ⌘Q from quitting the wrong app.</b></p>
 
-Maccy is a lightweight clipboard manager for macOS. It keeps the history of what you copy
-and lets you quickly navigate, search, and use previous clipboard contents.
+<p>Press ⇧⌘V, find anything you copied and paste it into the app you're in.<br>
+Free and open source, for macOS 14 Sonoma or later. No network connections at all.</p>
 
-Maccy works on macOS Sonoma 14 or higher.
+<p>
+  <a href="https://github.com/eddytwist/multipasta/releases/latest/download/Multipasta.dmg"><img alt="Download for macOS" src="https://img.shields.io/badge/Download_for_macOS-Multipasta.dmg-0A84FF?style=for-the-badge&logo=apple&logoColor=white"></a>
+</p>
 
-<!-- vim-markdown-toc GFM -->
+<p>
+  <img alt="macOS 14+" src="https://img.shields.io/badge/macOS-14%2B-black?style=flat-square">
+  <a href="https://github.com/eddytwist/multipasta/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/eddytwist/multipasta?style=flat-square"></a>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-green?style=flat-square"></a>
+</p>
 
-* [Features](#features)
-* [Install](#install)
-* [Usage](#usage)
-* [Advanced](#advanced)
-  * [Ignore Copied Items](#ignore-copied-items)
-  * [Ignore Custom Copy Types](#ignore-custom-copy-types)
-  * [Speed up Clipboard Check Interval](#speed-up-clipboard-check-interval)
-* [FAQ](#faq)
-  * [Why doesn't it paste when I select an item in history?](#why-doesnt-it-paste-when-i-select-an-item-in-history)
-  * [When assigning a hotkey to open Maccy, it says that this hotkey is already used in some system setting.](#when-assigning-a-hotkey-to-open-maccy-it-says-that-this-hotkey-is-already-used-in-some-system-setting)
-  * [How to restore hidden footer?](#how-to-restore-hidden-footer)
-  * [How to ignore copies from Universal Clipboard?](#how-to-ignore-copies-from-universal-clipboard)
-  * [My keyboard shortcut stopped working in password fields. How do I fix this?](#my-keyboard-shortcut-stopped-working-in-password-fields-how-do-i-fix-this)
-* [Translations](#translations)
-* [Motivation](#motivation)
-* [License](#license)
+<!--
+  Screenshots (English UI, docs/screenshots/):
+  - popup-light.png / popup-dark.png: the history popup opened with ⇧⌘V over an app, a few text items, an image item,
+    one pinned item, the search field at the top; light and dark appearance.
+  - settings-light.png / settings-dark.png: the Settings window, General tab (Open history shortcut, Paste on Enter,
+    Launch at login); light and dark appearance.
+  - quit-settings-light.png / quit-settings-dark.png: the Settings window, Quit tab, with Terminal and Safari in the
+    list. (The HUD itself can't be shown from a UI test: it needs ⌘Q held in a real guarded app.)
+  Made by MaccyUITests/ReadmeScreenshotTests.swift (sample data, in-memory history), run with
+  TEST_RUNNER_MULTIPASTA_README_SHOTS=1; window corners and shadow added afterwards.
+-->
 
-<!-- vim-markdown-toc -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/popup-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/screenshots/popup-light.png">
+  <img alt="The Multipasta popup: search field, pinned item and recent copies, text and images" src="docs/screenshots/popup-light.png" width="720">
+</picture>
+
+</div>
 
 ## Features
 
-* Lightweight and fast
-* Keyboard-first
-* Secure and private
-* Native UI
-* Open source and free
+- **Clipboard history.** Text, images and files, 500 items by default (100 to 999). Pinned items stay at the top or
+  bottom and survive clearing.
+- **Paste where you are.** Press ⇧⌘V, type to search, press Return: the item is pasted into the front app. ⌥Return
+  only copies it, ⌥⇧Return pastes it without formatting.
+- **Preview.** Images, files and text too long for its row open in a preview panel next to the list.
+- **⌘Q guard.** In the apps you choose, ⌘Q quits only if you hold it for 1 second; a ring shows the progress. A quick
+  ⌘Q by mistake does nothing.
+- **Ignore what shouldn't be saved.** Skip whole apps, pasteboard types or text that matches a regular expression.
+  Copies that password managers mark as concealed are never saved.
+- **Bring your Maccy history.** If Maccy is installed, Multipasta offers to import its history and pins once; Maccy's
+  own history stays unchanged.
+- **Private.** History stays on your Mac. No accounts, no analytics, no update checks.
+
+<table>
+  <tr>
+    <td width="60%" align="center">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/settings-dark.png">
+        <img alt="Settings, General tab: the shortcut to open the history, Paste on Enter, Launch at login" src="docs/screenshots/settings-light.png">
+      </picture>
+      <p><sub>Three short tabs; the rest is under Advanced</sub></p>
+    </td>
+    <td width="40%" align="center">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/quit-settings-dark.png">
+        <img alt="Settings, Quit tab: Terminal and Safari quit only if you hold ⌘Q for 1 second" src="docs/screenshots/quit-settings-light.png">
+      </picture>
+      <p><sub>Pick the apps where ⌘Q must be held for 1 second</sub></p>
+    </td>
+  </tr>
+</table>
 
 ## Install
 
-Download the latest version from the [releases](https://github.com/p0deje/Maccy/releases/latest) page, or use [Homebrew](https://brew.sh/):
+1. [Download **Multipasta.dmg**](https://github.com/eddytwist/multipasta/releases/latest/download/Multipasta.dmg),
+   open it and drag **Multipasta** to Applications.
+2. Open Multipasta. macOS says it can't verify the app: close the message (don't move the app to the Trash).
+3. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. You do this once.
+4. Press ⇧⌘V, click **Settings…** → **Quit** → **Open System Settings** and turn on Multipasta under
+   **Accessibility**. Pasting and the ⌘Q guard need it.
 
-```sh
-brew install maccy
-```
+Step 3 is there because the app isn't notarized by Apple: I don't have a paid Apple Developer account. For the same
+reason, macOS may ask for Accessibility again after an update. If Multipasta looks turned on there but can't
+paste, remove it from the list with **−** and turn it on again.
 
-## Usage
-
-1. <kbd>SHIFT (⇧)</kbd> + <kbd>COMMAND (⌘)</kbd> + <kbd>C</kbd> to popup Maccy or click on its icon in the menu bar.
-2. Type what you want to find.
-3. To select the history item you wish to copy, press <kbd>ENTER</kbd>, or click the item, or use <kbd>COMMAND (⌘)</kbd> + `n` shortcut.
-4. To choose the history item and paste, press <kbd>OPTION (⌥)</kbd> + <kbd>ENTER</kbd>, or <kbd>OPTION (⌥)</kbd> + <kbd>CLICK</kbd> the item, or use <kbd>OPTION (⌥)</kbd> + `n` shortcut.
-5. To choose the history item and paste without formatting, press <kbd>OPTION (⌥)</kbd> + <kbd>SHIFT (⇧)</kbd> + <kbd>ENTER</kbd>, or <kbd>OPTION (⌥)</kbd> + <kbd>SHIFT (⇧)</kbd> + <kbd>CLICK</kbd> the item, or use <kbd>OPTION (⌥)</kbd> + <kbd>SHIFT (⇧)</kbd> + `n` shortcut.
-6. To delete the history item, press <kbd>OPTION (⌥)</kbd> + <kbd>DELETE (⌫)</kbd>.
-7. To see the full text of the history item, wait a couple of seconds for tooltip.
-8. To pin the history item so that it remains on top of the list, press <kbd>OPTION (⌥)</kbd> + <kbd>P</kbd>. The item will be moved to the top with a random but permanent keyboard shortcut. To unpin it, press <kbd>OPTION (⌥)</kbd> + <kbd>P</kbd> again.
-9. To clear all unpinned items, select _Clear_ in the menu, or press <kbd>OPTION (⌥)</kbd> + <kbd>COMMAND (⌘)</kbd> + <kbd>DELETE (⌫)</kbd>. To clear all items including pinned, select _Clear_ in the menu with  <kbd>OPTION (⌥)</kbd> pressed, or press <kbd>SHIFT (⇧)</kbd> + <kbd>OPTION (⌥)</kbd> + <kbd>COMMAND (⌘)</kbd> + <kbd>DELETE (⌫)</kbd>.
-10. To disable Maccy and ignore new copies, click on the menu icon with <kbd>OPTION (⌥)</kbd> pressed.
-11. To ignore only the next copy, click on the menu icon with <kbd>OPTION (⌥)</kbd> + <kbd>SHIFT (⇧)</kbd> pressed.
-12. To customize the behavior, check "Preferences…" window, or press <kbd>COMMAND (⌘)</kbd> + <kbd>,</kbd>.
-
-## Advanced
-
-### Ignore Copied Items
-
-You can tell Maccy to ignore all copied items:
-
-```sh
-defaults write org.p0deje.Maccy ignoreEvents true # default is false
-```
-
-This is useful if you have some workflow for copying sensitive data. You can set `ignoreEvents` to true, copy the data and set `ignoreEvents` back to false.
-
-You can also click the menu icon with <kbd>OPTION (⌥)</kbd> pressed. To ignore only the next copy, click with <kbd>OPTION (⌥)</kbd> + <kbd>SHIFT (⇧)</kbd> pressed.
-
-### Ignore Custom Copy Types
-
-By default Maccy will ignore certain copy types that are considered to be confidential
-or temporary. The default list always include the following types:
-
-* `org.nspasteboard.TransientType`
-* `org.nspasteboard.ConcealedType`
-* `org.nspasteboard.AutoGeneratedType`
-
-Also, default configuration includes the following types but they can be removed
-or overwritten:
-
-* `com.agilebits.onepassword`
-* `com.typeit4me.clipping`
-* `de.petermaurer.TransientPasteboardType`
-* `Pasteboard generator type`
-* `net.antelle.keeweb`
-
-You can add additional custom types using settings.
-To find what custom types are used by an application, you can use
-free application [Pasteboard-Viewer](https://github.com/sindresorhus/Pasteboard-Viewer).
-Simply download the application, open it, copy something from the application you
-want to ignore and look for any custom types in the left sidebar. [Here is an example
-of using this approach to ignore Adobe InDesign](https://github.com/p0deje/Maccy/issues/125).
-
-### Speed up Clipboard Check Interval
-
-By default, Maccy checks clipboard every 500 ms, which should be enough for most users. If you want
-to speed it up, you can change it with `defaults`:
-
-```sh
-defaults write org.p0deje.Maccy clipboardCheckInterval 0.1 # 100 ms
-```
+**Requirements:** macOS 14 Sonoma or later, Apple Silicon or Intel. App in English and Russian.
 
 ## FAQ
 
-### Why doesn't it paste when I select an item in history?
+<details>
+<summary><b>How is it different from <a href="https://github.com/p0deje/Maccy">Maccy</a>?</b></summary>
 
-1. Make sure you have "Paste automatically" enabled in Preferences.
-2. Make sure "Maccy" is added to System Settings -> Privacy & Security -> Accessibility.
+Multipasta is a fork of Maccy, so the history, search, pins and pasting are Maccy's work. On top of that it has a
+simpler Settings window (three tabs, the rest under Advanced), the ⌘Q guard, a one-time import of Maccy's history, and
+its own icon and design.
 
-### When assigning a hotkey to open Maccy, it says that this hotkey is already used in some system setting.
+Maccy is a great app and is actively maintained. If you don't need these extras, use Maccy.
 
-1. Open System settings -> Keyboard -> Keyboard Shortcuts.
-2. Find where that hotkey is used. For example, "Convert text to simplified Chinese" is under Services -> Text.
-3. Disable that hotkey or remove assigned combination ([screenshot](https://github.com/p0deje/Maccy/assets/576152/446719e6-c3e5-4eb0-95fb-5a811066487f)).
-4. Restart Maccy.
-5. Assign hotkey in Maccy settings.
+</details>
 
-### How to restore hidden footer?
+<details>
+<summary><b>Why does it need Accessibility?</b></summary>
 
-1. Open Maccy window.
-2. Press <kbd>COMMAND (⌘)</kbd> + <kbd>,</kbd> to open preferences.
-3. Enable footer in Appearance section.
+To paste, Multipasta presses ⌘V for you in the front app, and macOS allows that only to apps with Accessibility. The
+⌘Q guard needs it too: it watches for ⌘Q while one of your guarded apps is in front. Without it, Multipasta still
+keeps the history and copies items, but can't paste or guard ⌘Q.
 
-If for some reason it doesn't work, run the following command in Terminal.app:
+</details>
 
-```sh
-defaults write org.p0deje.Maccy showFooter 1
+<details>
+<summary><b>Why isn't it sandboxed? Does it go online?</b></summary>
+
+The ⌘Q guard has to see and hold back a key press meant for another app, which a sandboxed app can't do. Multipasta
+watches the keyboard only while your ⌘Q list isn't empty, acts only on ⌘Q in the apps on that list, and doesn't record
+or store key presses.
+
+It never goes online: no update checks, no analytics, no crash reports. To hear about new versions, watch the
+repository's releases on GitHub.
+
+</details>
+
+<details>
+<summary><b>Where is my history stored?</b></summary>
+
+In `~/Library/Application Support/Multipasta/`, and the settings in `~/Library/Preferences/com.eddytwist.Multipasta.plist`.
+To start over, quit Multipasta and delete both.
+
+</details>
+
+<details>
+<summary><b>How do I keep passwords out of the history?</b></summary>
+
+Most password managers mark what they copy as concealed or transient, and Multipasta, like Maccy, never saves those.
+It also skips 1Password and KeeWeb types by default. For an app that doesn't mark its copies, add it in **Settings →
+History → Don't save from these apps**. **Advanced…** also has ignored pasteboard types and regular expressions.
+
+</details>
+
+<details>
+<summary><b>The ⌘Q guard doesn't work in some app</b></summary>
+
+When Secure Keyboard Entry is on (Terminal and some password fields turn it on), macOS hides key presses from other
+apps, so ⌘Q isn't guarded until it's off. The Quit tab says when this happens.
+
+</details>
+
+<details>
+<summary><b>Keyboard shortcuts</b></summary>
+
+| Shortcut | Action |
+|---|---|
+| <kbd>⇧</kbd> <kbd>⌘</kbd> <kbd>V</kbd> | Open the history (change it in Settings → General) |
+| Type | Search |
+| <kbd>↑</kbd> <kbd>↓</kbd> | Move the selection |
+| <kbd>Return</kbd> | Paste into the front app (or only copy, with Paste on Enter off) |
+| <kbd>⌥</kbd> <kbd>Return</kbd> | Only copy (or paste, with Paste on Enter off) |
+| <kbd>⌥</kbd> <kbd>⇧</kbd> <kbd>Return</kbd> | Paste without formatting |
+| <kbd>⌘</kbd> <kbd>1</kbd> … <kbd>⌘</kbd> <kbd>9</kbd> | Pick one of the first nine items; pinned items get a letter |
+| <kbd>⌥</kbd> <kbd>P</kbd> | Pin or unpin |
+| <kbd>⌥</kbd> <kbd>⌫</kbd> | Delete the item |
+| <kbd>⌃</kbd> <kbd>Space</kbd> | Show or hide the preview |
+| <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>⌫</kbd> | Clear the history (pins stay; add <kbd>⇧</kbd> to clear everything) |
+| <kbd>⌘</kbd> <kbd>,</kbd> | Settings |
+| <kbd>Esc</kbd> | Close |
+| Hold <kbd>⌘</kbd> <kbd>Q</kbd> | Quit an app on your ⌘Q list |
+
+Pin, delete and preview shortcuts can be changed in **Settings → History → Advanced… → Shortcuts**.
+If your shortcut doesn't work in password fields, see
+[Keyboard shortcut not working in password fields](docs/keyboard-shortcut-password-fields.md).
+
+</details>
+
+<details>
+<summary><b>How do I uninstall it?</b></summary>
+
+Turn off **Launch at login**, quit Multipasta and move it to the Trash. Delete the history and settings listed above
+if you don't plan to come back, and remove Multipasta from **Privacy & Security → Accessibility**.
+
+</details>
+
+## Build from source
+
+You need Xcode 26 or later.
+
+```bash
+git clone https://github.com/eddytwist/multipasta.git && cd multipasta && scripts/build-dmg.sh
 ```
 
-### How to ignore copies from [Universal Clipboard](https://support.apple.com/en-us/102430)?
+It builds a universal Release app, signs it ad-hoc (or with `SIGN_IDENTITY="Developer ID Application: …"`) and makes
+`build/Multipasta.dmg`. For development, open `Maccy.xcodeproj` and run the `Maccy` scheme; the project and folders
+keep Maccy's names to make merging upstream changes easier.
 
-1. Open Preferences -> Ignore -> Pasteboard Types.
-2. Add `com.apple.is-remote-clipboard`.
+## Credits & license
 
-### My keyboard shortcut stopped working in password fields. How do I fix this?
-
-If your shortcut produces a character (like `Option+C` → "ç"), macOS security may block it in password fields. Use [Karabiner-Elements](https://karabiner-elements.pqrs.org/) to remap your shortcut to a different combination like `Cmd+Shift+C`. [See detailed solution](docs/keyboard-shortcut-password-fields.md).
-
-## Translations
-
-The translations are hosted in [Weblate](https://hosted.weblate.org/engage/maccy/).
-You can use it to suggest changes in translations and localize the application to a new language.
-
-[![Translation status](https://hosted.weblate.org/widget/maccy/multi-auto.svg)](https://hosted.weblate.org/engage/maccy/)
-
-## Motivation
-
-There are dozens of similar applications out there, so why build another?
-Over the past years since I moved from Linux to macOS, I struggled to find
-a clipboard manager that is as free and simple as [Parcellite](http://parcellite.sourceforge.net),
-but I couldn't. So I've decided to build one.
-
-Also, I wanted to learn Swift and get acquainted with macOS application development.
-
-## License
-
-[MIT](./LICENSE)
+[MIT](LICENSE). Multipasta is based on [Maccy](https://github.com/p0deje/Maccy) © Alex Rodionov, also MIT; his
+copyright notice is kept in [LICENSE](LICENSE). Changes © 2026 Eduard Ivanov · [eddytwist.com](https://eddytwist.com)

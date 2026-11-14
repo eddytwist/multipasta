@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HistorySizeOption %lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld запись</string>
+			<key>few</key>
+			<string>%lld записи</string>
+			<key>many</key>
+			<string>%lld записей</string>
+			<key>other</key>
+			<string>%lld записи</string>
+		</dict>
+	</dict>
+	<key>MaccyImportResultTitle %lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>Импортирована %lld запись из Maccy</string>
+			<key>few</key>
+			<string>Импортированы %lld записи из Maccy</string>
+			<key>many</key>
+			<string>Импортировано %lld записей из Maccy</string>
+			<key>other</key>
+			<string>Импортировано %lld записи из Maccy</string>
+		</dict>
+	</dict>
+	<key>MaccyImportSkipped %lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>Пропущено записей, которые уже были в Multipasta: %lld.</string>
+			<key>few</key>
+			<string>Пропущено записей, которые уже были в Multipasta: %lld.</string>
+			<key>many</key>
+			<string>Пропущено записей, которые уже были в Multipasta: %lld.</string>
+			<key>other</key>
+			<string>Пропущено записей, которые уже были в Multipasta: %lld.</string>
+		</dict>
+	</dict>
+	<key>MaccyImportTrimmed %lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>Чтобы не превысить размер истории, удалены самые старые записи: %lld. Закреплённые сохранены.</string>
+			<key>few</key>
+			<string>Чтобы не превысить размер истории, удалены самые старые записи: %lld. Закреплённые сохранены.</string>
+			<key>many</key>
+			<string>Чтобы не превысить размер истории, удалены самые старые записи: %lld. Закреплённые сохранены.</string>
+			<key>other</key>
+			<string>Чтобы не превысить размер истории, удалены самые старые записи: %lld. Закреплённые сохранены.</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

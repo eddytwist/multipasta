@@ -111,69 +111,47 @@ class AppState: Sendable {
   }
 
   @MainActor
-  func openPreferences() { // swiftlint:disable:this function_body_length
+  func openPreferences() {
+    // Multipasta: three tabs, General, History and Quit. Maccy's other panes are not in the
+    // tab bar; their settings are in the Advanced sheet of the History tab.
     if settingsWindowController == nil {
-      let generalTitle = NSLocalizedString("Title", tableName: "GeneralSettings", comment: "")
-      let storageTitle = NSLocalizedString("Title", tableName: "StorageSettings", comment: "")
-      let appearanceTitle = NSLocalizedString("Title", tableName: "AppearanceSettings", comment: "")
-      let ignoreTitle = NSLocalizedString("Title", tableName: "IgnoreSettings", comment: "")
-      let advancedTitle = NSLocalizedString("Title", tableName: "AdvancedSettings", comment: "")
-      let toolbarTitles = [generalTitle, storageTitle, appearanceTitle, ignoreTitle, advancedTitle]
-      let titleAttributes: [NSAttributedString.Key: Any] = [.font: NSFont.systemFont(ofSize: NSFont.systemFontSize)]
-      let titleWidth = toolbarTitles.reduce(CGFloat.zero) {
-        $0 + ($1 as NSString).size(withAttributes: titleAttributes).width
-      }
-      let toolbarItemSpacing: CGFloat = 24
-      let toolbarEdgeSpacing: CGFloat = 40
-      let toolbarWidth = titleWidth + CGFloat(toolbarTitles.count) * toolbarItemSpacing + toolbarEdgeSpacing
-      let minimumWidth = max(500, ceil(toolbarWidth))
       settingsWindowController = SettingsWindowController(
         panes: [
           Settings.Pane(
             identifier: Settings.PaneIdentifier.general,
-            title: generalTitle,
+            title: NSLocalizedString("GeneralTitle", tableName: "MultipastaSettings", comment: ""),
             toolbarIcon: NSImage.gearshape!
           ) {
-            GeneralSettingsPane()
-              .frame(minWidth: minimumWidth)
+            GeneralSettingsTab()
           },
           Settings.Pane(
-            identifier: Settings.PaneIdentifier.storage,
-            title: storageTitle,
-            toolbarIcon: NSImage.externaldrive!
+            identifier: Settings.PaneIdentifier.history,
+            title: NSLocalizedString("HistoryTitle", tableName: "MultipastaSettings", comment: ""),
+            toolbarIcon: NSImage.clockArrowCirclepath!
           ) {
-            StorageSettingsPane()
-              .frame(minWidth: minimumWidth)
+            HistorySettingsTab()
           },
           Settings.Pane(
-            identifier: Settings.PaneIdentifier.appearance,
-            title: appearanceTitle,
-            toolbarIcon: NSImage.paintpalette!
+            identifier: Settings.PaneIdentifier.quit,
+            title: NSLocalizedString("QuitTitle", tableName: "MultipastaSettings", comment: ""),
+            toolbarIcon: NSImage(systemSymbolName: "command", accessibilityDescription: nil)!
           ) {
-            AppearanceSettingsPane()
-              .frame(minWidth: minimumWidth)
-          },
-          Settings.Pane(
-            identifier: Settings.PaneIdentifier.ignore,
-            title: ignoreTitle,
-            toolbarIcon: NSImage.nosign!
-          ) {
-            IgnoreSettingsPane()
-              .frame(minWidth: minimumWidth)
-          },
-          Settings.Pane(
-            identifier: Settings.PaneIdentifier.advanced,
-            title: advancedTitle,
-            toolbarIcon: NSImage.gearshape2!
-          ) {
-            AdvancedSettingsPane()
-              .frame(minWidth: minimumWidth)
+            QuitSettingsTab()
           }
         ]
       )
     }
     settingsWindowController?.show()
     settingsWindowController?.window?.orderFrontRegardless()
+    #if DEBUG
+    // README screenshots: no focus ring on the first switch when the Mac has keyboard
+    // navigation turned on, which an argument can't turn off for one app.
+    if AppDelegate.readmeScreenshotAppearance != nil {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        self?.settingsWindowController?.window?.makeFirstResponder(nil)
+      }
+    }
+    #endif
   }
 
   func quit() {

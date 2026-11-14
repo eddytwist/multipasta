@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Multipasta</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,24 +27,18 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © Alexey Rodionov</string>
+	<string>© 2025 Alex Rodionov (Maccy) · © 2026 Eduard Ivanov</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUEnableDownloaderService</key>
-	<true/>
-	<key>SUEnableInstallerLauncherService</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>https://raw.githubusercontent.com/p0deje/Maccy/master/appcast.xml</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 	<dict>
 		<key>UTTypeIdentifier</key>
-		<string>org.p0deje.Maccy.pin-reorder</string>
+		<string>com.eddytwist.Multipasta.pin-reorder</string>
 		<key>UTTypeTagSpecification</key>
 		<dict/>
 		<key>UTTypeDescription</key>
-		<string>Maccy Pin Reorder Type</string>
+		<string>Multipasta Pin Reorder Type</string>
 		<key>UTTypeConformsTo</key>
 		<array>
 		<string>public.data</string>

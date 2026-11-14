@@ -1,0 +1,108 @@
+/* Multipasta settings window: General, History and Quit tabs, Advanced sheet. */
+"GeneralTitle" = "General";
+"HistoryTitle" = "History";
+
+/* General tab */
+"OpenHistory" = "Open history";
+"PasteOnEnter" = "Paste on Enter";
+"PasteOnEnterCaption" = "Otherwise Enter only copies; ⌥Enter does the opposite";
+"LaunchAtLogin" = "Launch at login";
+"About" = "About";
+"VersionLine %@" = "Version %@ · Based on Maccy by Alex Rodionov (MIT)";
+"AboutApp %@" = "About %@…";
+"MaccyOnGitHub" = "GitHub";
+
+/* History tab */
+"HistorySize" = "History size";
+"Images" = "Images";
+"ImagesCaption" = "Keep copied images in the history";
+"IgnoredApps" = "Don't save from these apps";
+"IgnoredAppsEmpty" = "No apps";
+"AddApp" = "Add app";
+"RemoveApp" = "Remove selected app";
+"Advanced" = "Advanced…";
+
+/* Quit tab and the ⌘Q guard HUD */
+"QuitTitle" = "Quit";
+"QuitAccessibility" = "Accessibility";
+"QuitAccessibilityCaption" = "Needed to paste and to guard ⌘Q";
+"QuitAccessibilityCaptionMissing" = "Not granted. Needed to paste and to guard ⌘Q";
+"QuitAccessibilityGranted" = "Granted";
+"QuitOpenSystemSettings" = "Open System Settings";
+"QuitGuardApps" = "Don't quit on ⌘Q";
+"QuitGuardCaption" = "To quit, hold ⌘Q for 1 second";
+"QuitGuardAppsEmpty" = "No apps: ⌘Q works as usual";
+"QuitSecureInputApp %@" = "Secure Keyboard Entry is on in %@. While it's on, macOS hides keys from Multipasta, so ⌘Q isn't guarded.";
+"QuitSecureInput" = "Secure Keyboard Entry is on (for example, Terminal → Secure Keyboard Entry). While it's on, macOS hides keys from Multipasta, so ⌘Q isn't guarded.";
+"QuitHoldToQuit %@" = "Hold ⌘Q to quit %@";
+
+/* Advanced sheet */
+"Done" = "Done";
+"Saving" = "Saving";
+"Files" = "Files";
+"Text" = "Text";
+"SortBy" = "Sort by";
+"CheckInterval" = "Check clipboard every";
+"CheckIntervalUnit" = "s";
+"CheckIntervalCaption" = "How often the clipboard is checked for new copies. Default: 0.5 s.";
+"PauseHistory" = "Ignore new copies";
+"IgnoreAllExceptListed" = "Save only from the listed apps";
+"PasteboardTypes" = "Ignored pasteboard types";
+"Regexps" = "Ignored regular expressions";
+"Popup" = "Popup";
+"PopupAt" = "Open at";
+"ResetPosition" = "Reset position";
+"PinTo" = "Pinned items";
+"SearchMode" = "Search";
+"HighlightMatches" = "Highlight matches";
+"ImageHeight" = "Image height";
+"OpenPreviewAutomatically" = "Open preview automatically when needed";
+"OpenPreviewAutomaticallyCaption" = "Only for images, files and text that doesn't fit in its row.";
+"PreviewDelay" = "Preview delay";
+"PreviewDelayUnit" = "ms";
+"Pasting" = "Pasting";
+"PasteWithoutFormatting" = "Paste without formatting";
+"Appearance" = "Appearance";
+"ShowMenuIcon" = "Show menu bar icon";
+"ShowRecentCopy" = "Show recent copy next to menu bar icon";
+"ShowSearchField" = "Show search field";
+"ShowTitle" = "Show app name before search field";
+"ShowApplicationIcons" = "Show app icons";
+"ShowHexColorSwatch" = "Show hex color swatch";
+"ShowSpecialSymbols" = "Show special symbols";
+"ShowFooter" = "Show footer";
+"ShowFooterCaption" = "When the footer is hidden, press ⌘, in the popup to open Settings.";
+"NotificationsAndSounds" = "Notifications and sounds…";
+"Shortcuts" = "Shortcuts";
+"PinShortcut" = "Pin item";
+"DeleteShortcut" = "Delete item";
+"PreviewShortcut" = "Toggle preview";
+"Clearing" = "Clearing";
+"ListEmpty" = "None";
+"AddItem" = "Add";
+"RemoveItem" = "Remove selected";
+"AllowedApps" = "Save only from these apps";
+"AllowedAppsEmpty" = "No apps yet: nothing will be saved";
+"IgnoreAllExceptListedCaption" = "Copies from all other apps are not saved.";
+
+/* Import from Maccy: Advanced sheet, launch offer and result alerts */
+"MaccyImportSection" = "Import";
+"MaccyImportLabel" = "History from Maccy";
+"MaccyImportCaption" = "Adds Maccy's clipboard history and pins to Multipasta. Maccy's own history stays unchanged.";
+"MaccyImportNotFound" = "Maccy's history was not found on this Mac.";
+"MaccyImportButton" = "Import from Maccy…";
+"MaccyImportOfferTitle" = "Import clipboard history from Maccy?";
+"MaccyImportOfferMessage" = "Multipasta found Maccy's clipboard history on this Mac. Import it to keep your earlier copies and pins. Maccy's own history stays unchanged.\n\nmacOS may ask you to allow Multipasta to access data from other apps.";
+"MaccyImportOfferImport" = "Import";
+"MaccyImportOfferNotNow" = "Not Now";
+"MaccyImportNothingNewTitle" = "Nothing new to import";
+"MaccyImportNothingNewMessage" = "Everything in Maccy's history is already in Multipasta.";
+"MaccyImportEmptyTitle" = "Nothing to import";
+"MaccyImportEmptyMessage" = "Maccy's clipboard history is empty.";
+"MaccyImportFailedTitle" = "Couldn't import history from Maccy";
+"MaccyImportErrorAccessDenied" = "macOS didn't allow Multipasta to read Maccy's data. Try again and choose Allow when macOS asks.";
+"MaccyImportErrorCopy %@" = "Couldn't make a temporary copy of Maccy's history: %@";
+"MaccyImportErrorOpen %@" = "Couldn't open Maccy's history: %@";
+"MaccyImportErrorRead %@" = "Couldn't read Maccy's history: %@";
+"MaccyImportErrorMultipastaRead %@" = "Couldn't read Multipasta's history: %@";
+"MaccyImportErrorSave %@" = "Couldn't save the imported items: %@";

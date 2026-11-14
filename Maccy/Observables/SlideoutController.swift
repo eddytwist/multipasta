@@ -64,7 +64,7 @@ enum ResizingMode {
 
 @Observable
 class SlideoutController {
-  let logger = Logger(label: "org.p0deje.Maccy")
+  let logger = Logger(label: "com.eddytwist.Multipasta")
   private static let animationDuration = 0.25
 
   let onContentResize: (CGFloat) -> Void
@@ -220,10 +220,32 @@ class SlideoutController {
     resizingMode = .none
   }
 
+  // Rows show text on a single truncated line, so longer text is likely cut off.
+  static let autoOpenTextLengthLimit = 70
+
+  // Automatic opening is only useful when the row can't show the whole item.
+  static func needsAutomaticPreview(hasImage: Bool, hasFileURLs: Bool, text: String) -> Bool {
+    if hasImage || hasFileURLs {
+      return true
+    }
+    let text = text.trimmingCharacters(in: .whitespacesAndNewlines)
+    return text.prefix(autoOpenTextLengthLimit + 1).count > autoOpenTextLengthLimit
+      || text.contains(where: \.isNewline)
+  }
+
+  private var selectionNeedsAutomaticPreview: Bool {
+    let navigator = AppState.shared.navigator
+    if let item = navigator.leadHistoryItem {
+      return item.needsAutomaticPreview
+    }
+    return navigator.pasteStackSelected
+  }
+
   func startAutoOpen() {
     cancelAutoOpen()
 
     guard Defaults[.openPreviewAutomatically] else { return }
+    guard selectionNeedsAutomaticPreview else { return }
     guard autoOpenEnabled else { return }
     guard !autoOpenSuppressed else { return }
     guard !state.isOpen else { return }
@@ -232,6 +254,7 @@ class SlideoutController {
       try? await Task.sleep(for: .milliseconds(Defaults[.previewDelay]))
       guard !Task.isCancelled else { return }
       guard Defaults[.openPreviewAutomatically] else { return }
+      guard selectionNeedsAutomaticPreview else { return }
 
       if !state.isOpen {
         togglePreview(trigger: .autoOpen)

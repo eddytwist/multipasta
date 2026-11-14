@@ -100,8 +100,15 @@ struct HistoryListView: View {
 
     ScrollView {
       ScrollViewReader { proxy in
-        MultipleSelectionListView(items: unpinnedItems) { previous, item, next, index in
-          HistoryItemView(item: item, previous: previous, next: next, index: index)
+        VStack(spacing: 0) {
+          // Multipasta: show a single grey line instead of an empty list.
+          if historyEmpty && !pinsVisible && !pasteStackVisible {
+            EmptyHistoryView(isSearching: !searchQuery.isEmpty)
+          }
+
+          MultipleSelectionListView(items: unpinnedItems) { previous, item, next, index in
+            HistoryItemView(item: item, previous: previous, next: next, index: index)
+          }
         }
         .padding(.top, scrollTopPadding)
         .padding(.bottom, scrollBottomPadding)

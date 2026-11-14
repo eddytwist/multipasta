@@ -1,0 +1,108 @@
+/* Multipasta settings window: General, History and Quit tabs, Advanced sheet. */
+"GeneralTitle" = "Основные";
+"HistoryTitle" = "История";
+
+/* General tab */
+"OpenHistory" = "Открыть историю";
+"PasteOnEnter" = "Вставлять сразу по Enter";
+"PasteOnEnterCaption" = "Иначе только копирует; ⌥Enter — наоборот";
+"LaunchAtLogin" = "Запускать при входе";
+"About" = "О программе";
+"VersionLine %@" = "Версия %@ · основано на Maccy, автор Alex Rodionov (MIT)";
+"AboutApp %@" = "О программе %@…";
+"MaccyOnGitHub" = "GitHub";
+
+/* History tab */
+"HistorySize" = "Размер истории";
+"Images" = "Картинки";
+"ImagesCaption" = "Сохранять скопированные картинки в истории";
+"IgnoredApps" = "Не записывать из программ";
+"IgnoredAppsEmpty" = "Нет программ";
+"AddApp" = "Добавить программу";
+"RemoveApp" = "Удалить выбранную программу";
+"Advanced" = "Дополнительно…";
+
+/* Quit tab and the ⌘Q guard HUD */
+"QuitTitle" = "Выход";
+"QuitAccessibility" = "Универсальный доступ";
+"QuitAccessibilityCaption" = "Нужен для вставки и защиты ⌘Q";
+"QuitAccessibilityCaptionMissing" = "Не выдан. Нужен для вставки и защиты ⌘Q";
+"QuitAccessibilityGranted" = "Выдан";
+"QuitOpenSystemSettings" = "Открыть Системные настройки";
+"QuitGuardApps" = "Не закрывать по ⌘Q";
+"QuitGuardCaption" = "Чтобы выйти, удерживайте ⌘Q 1 секунду";
+"QuitGuardAppsEmpty" = "Нет программ: ⌘Q работает как обычно";
+"QuitSecureInputApp %@" = "В программе «%@» включён «Защищённый ввод с клавиатуры». Пока он включён, macOS прячет клавиши от Multipasta и защита ⌘Q не работает.";
+"QuitSecureInput" = "Включён «Защищённый ввод с клавиатуры» (например, в Терминале). Пока он включён, macOS прячет клавиши от Multipasta и защита ⌘Q не работает.";
+"QuitHoldToQuit %@" = "Удерживайте ⌘Q, чтобы закрыть «%@»";
+
+/* Advanced sheet */
+"Done" = "Готово";
+"Saving" = "Сохранение";
+"Files" = "Файлы";
+"Text" = "Текст";
+"SortBy" = "Сортировка";
+"CheckInterval" = "Проверять буфер каждые";
+"CheckIntervalUnit" = "с";
+"CheckIntervalCaption" = "Как часто проверять буфер обмена на новые копирования. По умолчанию: 0,5 с.";
+"PauseHistory" = "Не записывать новые копирования";
+"IgnoreAllExceptListed" = "Записывать только из перечисленных программ";
+"PasteboardTypes" = "Не записывать типы данных";
+"Regexps" = "Не записывать по регулярным выражениям";
+"Popup" = "Окно истории";
+"PopupAt" = "Открывать";
+"ResetPosition" = "Сбросить положение";
+"PinTo" = "Закреплённые";
+"SearchMode" = "Поиск";
+"HighlightMatches" = "Выделять совпадения";
+"ImageHeight" = "Высота картинок";
+"OpenPreviewAutomatically" = "Открывать предпросмотр автоматически, когда нужно";
+"OpenPreviewAutomaticallyCaption" = "Только для картинок, файлов и текста, который не помещается в строку.";
+"PreviewDelay" = "Задержка предпросмотра";
+"PreviewDelayUnit" = "мс";
+"Pasting" = "Вставка";
+"PasteWithoutFormatting" = "Вставлять без форматирования";
+"Appearance" = "Внешний вид";
+"ShowMenuIcon" = "Значок в строке меню";
+"ShowRecentCopy" = "Последняя копия рядом со значком";
+"ShowSearchField" = "Поле поиска";
+"ShowTitle" = "Название программы перед поиском";
+"ShowApplicationIcons" = "Значки программ";
+"ShowHexColorSwatch" = "Образец цвета для HEX-кодов";
+"ShowSpecialSymbols" = "Показывать спецсимволы";
+"ShowFooter" = "Нижнее меню";
+"ShowFooterCaption" = "Когда нижнее меню скрыто, нажмите ⌘, в окне истории, чтобы открыть настройки.";
+"NotificationsAndSounds" = "Уведомления и звуки…";
+"Shortcuts" = "Сочетания клавиш";
+"PinShortcut" = "Закрепить запись";
+"DeleteShortcut" = "Удалить запись";
+"PreviewShortcut" = "Предпросмотр";
+"Clearing" = "Очистка";
+"ListEmpty" = "Пусто";
+"AddItem" = "Добавить";
+"RemoveItem" = "Удалить выбранное";
+"AllowedApps" = "Записывать только из этих программ";
+"AllowedAppsEmpty" = "Программ нет — ничего не будет записываться";
+"IgnoreAllExceptListedCaption" = "Копирования из остальных программ не записываются.";
+
+/* Import from Maccy: Advanced sheet, launch offer and result alerts */
+"MaccyImportSection" = "Импорт";
+"MaccyImportLabel" = "История из Maccy";
+"MaccyImportCaption" = "Добавляет историю буфера обмена и закреплённые записи из Maccy в Multipasta. История в самом Maccy не изменится.";
+"MaccyImportNotFound" = "История Maccy на этом Mac не найдена.";
+"MaccyImportButton" = "Импортировать из Maccy…";
+"MaccyImportOfferTitle" = "Импортировать историю буфера обмена из Maccy?";
+"MaccyImportOfferMessage" = "Multipasta нашла на этом Mac историю буфера обмена Maccy. Импортируйте её, чтобы сохранить прежние записи, в том числе закреплённые. История в самом Maccy не изменится.\n\nmacOS может попросить разрешить Multipasta доступ к данным других приложений.";
+"MaccyImportOfferImport" = "Импортировать";
+"MaccyImportOfferNotNow" = "Не сейчас";
+"MaccyImportNothingNewTitle" = "Нечего добавить";
+"MaccyImportNothingNewMessage" = "Всё из истории Maccy уже есть в Multipasta.";
+"MaccyImportEmptyTitle" = "Нечего импортировать";
+"MaccyImportEmptyMessage" = "История буфера обмена Maccy пуста.";
+"MaccyImportFailedTitle" = "Не удалось импортировать историю из Maccy";
+"MaccyImportErrorAccessDenied" = "macOS не разрешила Multipasta прочитать данные Maccy. Попробуйте снова и нажмите «Разрешить», когда macOS спросит.";
+"MaccyImportErrorCopy %@" = "Не удалось сделать временную копию истории Maccy: %@";
+"MaccyImportErrorOpen %@" = "Не удалось открыть историю Maccy: %@";
+"MaccyImportErrorRead %@" = "Не удалось прочитать историю Maccy: %@";
+"MaccyImportErrorMultipastaRead %@" = "Не удалось прочитать историю Multipasta: %@";
+"MaccyImportErrorSave %@" = "Не удалось сохранить импортированные записи: %@";

@@ -45,6 +45,9 @@ class HistoryItemDecorator: Identifiable, Hashable, HasVisibility {
   var hasFileURLs: Bool { !item.fileURLs.isEmpty }
   var hasPlainText: Bool { item.text != nil }
   var hasRichText: Bool { item.rtf != nil || item.html != nil }
+  var needsAutomaticPreview: Bool {
+    SlideoutController.needsAutomaticPreview(hasImage: hasImage, hasFileURLs: hasFileURLs, text: text)
+  }
 
   var previewImageGenerationTask: Task<(), Error>?
   var thumbnailImageGenerationTask: Task<(), Error>?

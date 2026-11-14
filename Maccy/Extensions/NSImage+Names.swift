@@ -6,6 +6,10 @@ extension NSImage {
   static let paintpalette = NSImage(systemSymbolName: "paintpalette", accessibilityDescription: "paintpalette")
   static let nosign = NSImage(systemSymbolName: "nosign", accessibilityDescription: "nosign")
   static let gearshape2 = NSImage(systemSymbolName: "gearshape.2", accessibilityDescription: "gearshape2")
+  static let clockArrowCirclepath = NSImage(
+    systemSymbolName: "clock.arrow.circlepath",
+    accessibilityDescription: "clock.arrow.circlepath"
+  )
 }
 
 extension NSImage.Name {
