@@ -82,9 +82,12 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
 4. Press ⇧⌘V, click **Settings…** → **Quit** → **Open System Settings** and turn on Multipasta under
    **Accessibility**. Pasting and the ⌘Q guard need it.
 
-Step 3 is there because the app isn't notarized by Apple: I don't have a paid Apple Developer account. For the same
-reason, macOS may ask for Accessibility again after an update. If Multipasta looks turned on there but can't
-paste, remove it from the list with **−** and turn it on again.
+Step 3 is there because the app isn't notarized by Apple: I don't have a paid Apple Developer account. Releases are
+signed with the same certificate every time, so updates keep the Accessibility permission.
+
+**If Return or ⌘1 doesn't paste**, macOS doesn't trust this copy of the app yet, even if the switch looks on. Open
+**System Settings → Privacy & Security → Accessibility**, select Multipasta, click **−**, then **+**, choose
+**Applications → Multipasta** and turn it on. Quit Multipasta from its popup and open it again.
 
 **Requirements:** macOS 14 Sonoma or later, Apple Silicon or Intel. App in English and Russian.
 

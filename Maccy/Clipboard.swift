@@ -1,4 +1,5 @@
 import AppKit
+import os
 import Defaults
 import Sauce
 
@@ -120,8 +121,13 @@ class Clipboard {
   }
 
   // Based on https://github.com/Clipy/Clipy/blob/develop/Clipy/Sources/Services/PasteService.swift.
+  static let pasteDiagnostics = os.Logger(subsystem: "com.eddytwist.Multipasta", category: "paste")
+
   func paste() {
     Accessibility.check()
+    if !AXIsProcessTrusted() {
+      Self.pasteDiagnostics.error("Paste skipped: Accessibility is not granted to this build")
+    }
 
     // Add flag that left/right modifier key has been pressed.
     // See https://github.com/TermiT/Flycut/pull/18 for details.

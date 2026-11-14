@@ -2,6 +2,7 @@
 # Builds Multipasta in Release (Apple Silicon and Intel), signs it and packs it into a disk image for a GitHub release.
 # Usage: scripts/build-dmg.sh
 #   SIGN_IDENTITY  codesign identity; "-" (the default) signs ad-hoc, which is enough to run the app
+#   SIGN_TIMESTAMP set to "none" for a self-signed identity (no Apple timestamp)
 #                  after Privacy & Security -> Open Anyway
 #   DEVELOPER_DIR  Xcode to build with; defaults to /Applications/Xcode.app when xcode-select points
 #                  to the Command Line Tools
@@ -47,7 +48,8 @@ BUILD_NUMBER="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Conten
 
 # Re-sign the whole bundle with the hardened runtime: ad-hoc by default, or with SIGN_IDENTITY.
 SIGN_ARGS=(--force --deep --options runtime --entitlements "$ENTITLEMENTS" -s "$SIGN_IDENTITY")
-if [[ "$SIGN_IDENTITY" == "-" ]]; then
+# A secure timestamp needs an Apple-issued certificate; ad-hoc and self-signed identities skip it.
+if [[ "$SIGN_IDENTITY" == "-" || "${SIGN_TIMESTAMP:-}" == "none" ]]; then
   SIGN_ARGS+=(--timestamp=none)
 else
   SIGN_ARGS+=(--timestamp)
