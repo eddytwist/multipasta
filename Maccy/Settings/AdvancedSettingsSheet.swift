@@ -84,6 +84,7 @@ struct AdvancedSettingsSheet: View { // swiftlint:disable:this type_body_length
         regexpsSection
         popupSection
         pastingSection
+        ListCopySettingsSection()
         appearanceSection
         shortcutsSection
       }

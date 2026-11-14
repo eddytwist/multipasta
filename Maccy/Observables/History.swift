@@ -158,7 +158,7 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
 
   @discardableResult
   @MainActor
-  func add(_ item: HistoryItem) -> HistoryItemDecorator {
+  func add(_ item: HistoryItem, notify: Bool = true) -> HistoryItemDecorator {
     if #available(macOS 15.0, *) {
       try? History.shared.insertIntoStorage(item)
     } else {
@@ -187,7 +187,7 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
         }
       }
       deleteFromStorage(existingHistoryItem)
-    } else {
+    } else if notify { // Multipasta: list copy shows its own HUD instead.
       Task {
         Notifier.notify(body: item.title, sound: .write)
       }
@@ -221,6 +221,34 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
     return itemDecorator
   }
 
+  // Multipasta: list copy (Maccy/ListCopy) rewrites its history item in place on each addition.
+  // Applies `update` to the item and moves it to its sorted position. False when the item is no
+  // longer in the history (deleted, or merged into another item).
+  @discardableResult
+  @MainActor
+  func updateInPlace(_ item: HistoryItem, _ update: (HistoryItem) -> Void) -> Bool {
+    guard let decorator = firstStoredItem(where: { $0.item == item }) else {
+      return false
+    }
+
+    update(item)
+    Storage.shared.context.processPendingChanges()
+    try? Storage.shared.context.save()
+
+    decorator.title = item.title
+    if decorator.isUnpinned {
+      allUnpinnedItems.removeAll { $0 == decorator }
+      insertUnpinned(decorator)
+    }
+    if searchQuery.isEmpty {
+      updateUnpinnedShortcuts()
+    } else {
+      updateSearchResults()
+    }
+    AppState.shared.popup.needsResize = true
+    return true
+  }
+
   @MainActor
   private func withLogging(_ msg: String, _ block: () throws -> Void) rethrows {
     func dataCounts() -> String {
@@ -236,6 +264,7 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
 
   @MainActor
   func clear() {
+    ListCopy.historyDidRemove(nil) // Multipasta: forget the list being collected.
     withLogging("Clearing history") {
       allUnpinnedItems.forEach(cleanup)
       allUnpinnedItems.removeAll()
@@ -265,6 +294,7 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
 
   @MainActor
   func clearAll() {
+    ListCopy.historyDidRemove(nil) // Multipasta: forget the list being collected.
     withLogging("Clearing all history") {
       allPinnedItems.forEach(cleanup)
       allUnpinnedItems.forEach(cleanup)
@@ -303,6 +333,7 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
   func delete(_ item: HistoryItemDecorator?) {
     guard let item else { return }
 
+    ListCopy.historyDidRemove(item.item) // Multipasta: forget the list if it was this one.
     cleanup(item)
     withLogging("Removing history item") {
       deleteFromStorage(item.item)

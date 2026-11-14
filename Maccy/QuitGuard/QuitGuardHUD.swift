@@ -118,6 +118,14 @@ final class QuitGuardHUD {
   }
 
   private func makePanel() -> NSPanel {
+    let panel = Self.makeHUDPanel()
+    self.panel = panel
+    return panel
+  }
+
+  /// A borderless, non-activating, click-through panel above other windows on every Space.
+  /// Also used by the list copy HUD.
+  static func makeHUDPanel() -> NSPanel {
     let panel = NSPanel(
       contentRect: .zero,
       styleMask: [.borderless, .nonactivatingPanel],
@@ -134,12 +142,11 @@ final class QuitGuardHUD {
     panel.isReleasedWhenClosed = false
     panel.animationBehavior = .none
     panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary, .ignoresCycle, .transient]
-    self.panel = panel
     return panel
   }
 
   /// The screen that holds most of the app's frontmost normal window.
-  private static func screen(ofFrontmostWindowOf pid: pid_t) -> NSScreen? {
+  static func screen(ofFrontmostWindowOf pid: pid_t) -> NSScreen? {
     guard let windows = CGWindowListCopyWindowInfo(
       [.optionOnScreenOnly, .excludeDesktopElements],
       kCGNullWindowID
@@ -282,7 +289,8 @@ nonisolated enum QuitGuardHUDText {
   }
 }
 
-private struct QuitGuardHUDBackground: ViewModifier {
+/// Also used by the list copy HUD.
+struct QuitGuardHUDBackground: ViewModifier {
   let cornerRadius: CGFloat
   let prefersGlass: Bool
 

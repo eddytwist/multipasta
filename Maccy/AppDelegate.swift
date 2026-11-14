@@ -136,6 +136,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Multipasta: hold ⌘Q to quit the apps listed in Settings → Quit.
     QuitGuard.shared.start()
 
+    // Multipasta: the add-to-list shortcut (Maccy/ListCopy).
+    ListCopy.shared.start()
+
     // Multipasta: offer once to import the clipboard history of upstream Maccy.
     if !Self.isTesting {
       Task {
@@ -151,6 +154,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationWillTerminate(_ notification: Notification) {
+    // Multipasta: don't leave a lazily provided list behind on the clipboard.
+    MainActor.assumeIsolated {
+      ListCopy.shared.applicationWillTerminate()
+    }
+
     if Defaults[.clearOnQuit] {
       AppState.shared.history.clear()
     }

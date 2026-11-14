@@ -165,16 +165,109 @@ extension SharedStateTests {
       }
     }
 
+    // Multipasta: list copy.
+    @Test("Popup with a list")
+    func popupWithList() async throws {
+      History.shared.add(Self.historyItem("https://github.com/eddytwist/multipasta"))
+      let list = Self.historyItem("buy milk\ncall the bank\npick up the parcel\nbook a table")
+      list.contents.append(
+        HistoryItemContent(type: NSPasteboard.PasteboardType.multipastaList.rawValue, value: Data("4".utf8))
+      )
+      History.shared.add(list)
+      let shortList = Self.historyItem("Отчёт за ноябрь\nСчёт №42")
+      shortList.contents.append(
+        HistoryItemContent(type: NSPasteboard.PasteboardType.multipastaList.rawValue, value: Data("2".utf8))
+      )
+      History.shared.add(shortList)
+      // Two-digit count: its lines start where the others' do.
+      let longList = Self.historyItem((1...12).map { "item \($0)" }.joined(separator: "\n"))
+      longList.contents.append(
+        HistoryItemContent(type: NSPasteboard.PasteboardType.multipastaList.rawValue, value: Data("12".utf8))
+      )
+      History.shared.add(longList)
+      History.shared.add(Self.historyItem("npm run build && npm test"))
+
+      for locale in ["en", "ru"] {
+        try await renderPopup(name: "popup-list-\(locale)", height: 420, locale: locale) {
+          AppState.shared.navigator.select(item: History.shared.unpinnedItems.first { $0.item.listEntryCount == 4 })
+        }
+      }
+    }
+
+    @Test("List copy HUD")
+    func listCopyHUD() async throws {
+      let messages: [(String, ListCopyHUDMessage)] = [
+        ("added", .added(count: 3)),
+        ("new", .newList),
+        ("nothing", .nothingToAdd),
+        ("only-text", .onlyText),
+        ("hidden", .hiddenContent),
+        ("paused", .paused),
+        ("ignored", .ignored)
+      ]
+      for locale in ["en", "ru"] {
+        for (name, message) in messages {
+          try await render(name: "hud-list-\(name)-\(locale)", locale: locale) {
+            ListCopyHUDView(message: message, prefersGlass: false)
+          }
+        }
+      }
+    }
+
+    @Test("General tab: Add to list turned off for a duplicate shortcut")
+    func addToListTurnedOff() async throws {
+      for locale in ["en", "ru"] {
+        Defaults[.addToListTurnedOffAsDuplicate] = true
+        try await render(name: "settings-general-add-to-list-off-\(locale)", locale: locale) { GeneralSettingsTab() }
+      }
+      Defaults[.addToListTurnedOffAsDuplicate] = false
+    }
+
+    @Test("Advanced sheet: Lists section")
+    func listCopySettings() async throws {
+      let savedFormat = Defaults[.listFormat]
+      let savedTimeout = Defaults[.listTimeout]
+      defer {
+        Defaults[.listFormat] = savedFormat
+        Defaults[.listTimeout] = savedTimeout
+      }
+      for locale in ["en", "ru"] {
+        Defaults[.listFormat] = .plain
+        Defaults[.listTimeout] = .fifteenMinutes
+        try await render(name: "settings-lists-\(locale)", locale: locale) {
+          Form {
+            ListCopySettingsSection()
+          }
+          .formStyle(.grouped)
+          .scrollDisabled(true)
+          .frame(width: SettingsLayout.width)
+          .fixedSize(horizontal: false, vertical: true)
+        }
+        Defaults[.listFormat] = .numbered
+        Defaults[.listTimeout] = .never
+        try await render(name: "settings-lists-numbered-never-\(locale)", locale: locale) {
+          Form {
+            ListCopySettingsSection()
+          }
+          .formStyle(.grouped)
+          .scrollDisabled(true)
+          .frame(width: SettingsLayout.width)
+          .fixedSize(horizontal: false, vertical: true)
+        }
+      }
+    }
+
     // MARK: - Rendering
 
     private func renderPopup(
       name: String,
       height: CGFloat,
+      locale: String = "en",
       prepare: @MainActor () -> Void = {}
     ) async throws {
       try await History.shared.load()
       // ContentView reloads the history when it appears, so prepare the state afterwards.
-      try await render(name: name, size: NSSize(width: 450, height: height), afterAppear: prepare) {
+      try await render(name: name, locale: locale, size: NSSize(width: 450, height: height), afterAppear: prepare) {
         ContentView()
       }
     }

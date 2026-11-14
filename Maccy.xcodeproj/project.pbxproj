@@ -176,6 +176,16 @@
 		AB10F0292ED0000100A1B001 /* QuitGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F0282ED0000100A1B001 /* QuitGuard.swift */; };
 		AB10F02B2ED0000100A1B001 /* QuitSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F02A2ED0000100A1B001 /* QuitSettingsTab.swift */; };
 		AB10F02D2ED0000100A1B001 /* QuitGuardStateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F02C2ED0000100A1B001 /* QuitGuardStateMachineTests.swift */; };
+		AB10F1022ED0000100A1B001 /* ListSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F1012ED0000100A1B001 /* ListSession.swift */; };
+		AB10F1042ED0000100A1B001 /* ListCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F1032ED0000100A1B001 /* ListCopy.swift */; };
+		AB10F1062ED0000100A1B001 /* ListCopyPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F1052ED0000100A1B001 /* ListCopyPasteboard.swift */; };
+		AB10F1082ED0000100A1B001 /* ListCopyHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F1072ED0000100A1B001 /* ListCopyHUD.swift */; };
+		AB10F10A2ED0000100A1B001 /* ListCopyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F1092ED0000100A1B001 /* ListCopyRow.swift */; };
+		AB10F10C2ED0000100A1B001 /* ListCopySettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F10B2ED0000100A1B001 /* ListCopySettingsSection.swift */; };
+		AB10F10E2ED0000100A1B001 /* ListSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F10D2ED0000100A1B001 /* ListSessionTests.swift */; };
+		AB10F1102ED0000100A1B001 /* ListCopyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F10F2ED0000100A1B001 /* ListCopyUITests.swift */; };
+		AB10F2022ED0000100A1B001 /* ListCopyHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F2012ED0000100A1B001 /* ListCopyHistoryTests.swift */; };
+		AB10F2042ED0000100A1B001 /* ListCopyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F2032ED0000100A1B001 /* ListCopyTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -388,6 +398,16 @@
 		AB10F0282ED0000100A1B001 /* QuitGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitGuard.swift; sourceTree = "<group>"; };
 		AB10F02A2ED0000100A1B001 /* QuitSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitSettingsTab.swift; sourceTree = "<group>"; };
 		AB10F02C2ED0000100A1B001 /* QuitGuardStateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitGuardStateMachineTests.swift; sourceTree = "<group>"; };
+		AB10F1012ED0000100A1B001 /* ListSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSession.swift; sourceTree = "<group>"; };
+		AB10F1032ED0000100A1B001 /* ListCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopy.swift; sourceTree = "<group>"; };
+		AB10F1052ED0000100A1B001 /* ListCopyPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopyPasteboard.swift; sourceTree = "<group>"; };
+		AB10F1072ED0000100A1B001 /* ListCopyHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopyHUD.swift; sourceTree = "<group>"; };
+		AB10F1092ED0000100A1B001 /* ListCopyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopyRow.swift; sourceTree = "<group>"; };
+		AB10F10B2ED0000100A1B001 /* ListCopySettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopySettingsSection.swift; sourceTree = "<group>"; };
+		AB10F10D2ED0000100A1B001 /* ListSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSessionTests.swift; sourceTree = "<group>"; };
+		AB10F10F2ED0000100A1B001 /* ListCopyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopyUITests.swift; sourceTree = "<group>"; };
+		AB10F2012ED0000100A1B001 /* ListCopyHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopyHistoryTests.swift; sourceTree = "<group>"; };
+		AB10F2032ED0000100A1B001 /* ListCopyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCopyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +501,7 @@
 			children = (
 				DA0EE7B8204657830025FC60 /* MaccyUITests.swift */,
 				DA0EE7B8AA0000000000F002 /* ReadmeScreenshotTests.swift */,
+				AB10F10F2ED0000100A1B001 /* ListCopyUITests.swift */,
 			);
 			path = MaccyUITests;
 			sourceTree = "<group>";
@@ -579,6 +600,9 @@
 				AB10F0092ED0000100A1B001 /* SnapshotTests.swift */,
 				AB10F0152ED0000100A1B001 /* MaccyImporterTests.swift */,
 				AB10F02C2ED0000100A1B001 /* QuitGuardStateMachineTests.swift */,
+				AB10F10D2ED0000100A1B001 /* ListSessionTests.swift */,
+				AB10F2012ED0000100A1B001 /* ListCopyHistoryTests.swift */,
+				AB10F2032ED0000100A1B001 /* ListCopyTests.swift */,
 				DA360DB41E3DF137005C6F6B /* Info.plist */,
 				4CB7148030897A9E00A357EC /* SharedStateTests.swift */,
 			);
@@ -657,6 +681,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AB10F1112ED0000100A1B001 /* ListCopy */ = {
+			isa = PBXGroup;
+			children = (
+				AB10F1012ED0000100A1B001 /* ListSession.swift */,
+				AB10F1032ED0000100A1B001 /* ListCopy.swift */,
+				AB10F1052ED0000100A1B001 /* ListCopyPasteboard.swift */,
+				AB10F1072ED0000100A1B001 /* ListCopyHUD.swift */,
+				AB10F1092ED0000100A1B001 /* ListCopyRow.swift */,
+				AB10F10B2ED0000100A1B001 /* ListCopySettingsSection.swift */,
+			);
+			path = ListCopy;
+			sourceTree = "<group>";
+		};
 		AB10F01F2ED0000100A1B001 /* QuitGuard */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,6 +715,7 @@
 				4762D6992467226100B3A2BA /* Localizable.strings */,
 				DA05B50F2C234C1C006980FE /* Models */,
 				DA3BCB902C3EEC1000B01BC1 /* Observables */,
+				AB10F1112ED0000100A1B001 /* ListCopy */,
 				AB10F01F2ED0000100A1B001 /* QuitGuard */,
 				DA181178247D150B00066D55 /* Settings */,
 				DA21AD3C249E85BD003E7C98 /* Sounds */,
@@ -894,6 +932,7 @@
 			files = (
 				DA0EE7B9204657830025FC60 /* MaccyUITests.swift in Sources */,
 				DA0EE7B9AA0000000000F001 /* ReadmeScreenshotTests.swift in Sources */,
+				AB10F1102ED0000100A1B001 /* ListCopyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,6 +950,9 @@
 				AB10F00A2ED0000100A1B001 /* SnapshotTests.swift in Sources */,
 				AB10F0162ED0000100A1B001 /* MaccyImporterTests.swift in Sources */,
 				AB10F02D2ED0000100A1B001 /* QuitGuardStateMachineTests.swift in Sources */,
+				AB10F10E2ED0000100A1B001 /* ListSessionTests.swift in Sources */,
+				AB10F2022ED0000100A1B001 /* ListCopyHistoryTests.swift in Sources */,
+				AB10F2042ED0000100A1B001 /* ListCopyTests.swift in Sources */,
 				CA110ED10000000000000001 /* CollectionSurroundingTests.swift in Sources */,
 				C0FFEE000000000000000003 /* ShortenedTests.swift in Sources */,
 				FFFC00000000000000000003 /* UnsafeForTitleLayoutTests.swift in Sources */,
@@ -977,6 +1019,12 @@
 				AB10F0232ED0000100A1B001 /* QuitGuardEventTap.swift in Sources */,
 				AB10F0252ED0000100A1B001 /* QuitGuardSystem.swift in Sources */,
 				AB10F0272ED0000100A1B001 /* QuitGuardHUD.swift in Sources */,
+				AB10F1022ED0000100A1B001 /* ListSession.swift in Sources */,
+				AB10F1042ED0000100A1B001 /* ListCopy.swift in Sources */,
+				AB10F1062ED0000100A1B001 /* ListCopyPasteboard.swift in Sources */,
+				AB10F1082ED0000100A1B001 /* ListCopyHUD.swift in Sources */,
+				AB10F10A2ED0000100A1B001 /* ListCopyRow.swift in Sources */,
+				AB10F10C2ED0000100A1B001 /* ListCopySettingsSection.swift in Sources */,
 				AB10F0292ED0000100A1B001 /* QuitGuard.swift in Sources */,
 				AB10F02B2ED0000100A1B001 /* QuitSettingsTab.swift in Sources */,
 				DA1969122C3F0DD200258481 /* HistoryItemView.swift in Sources */,
@@ -1404,7 +1452,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1420,7 +1468,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eddytwist.Multipasta;
 				PRODUCT_MODULE_NAME = Maccy;
 				PRODUCT_NAME = Multipasta;
@@ -1441,7 +1489,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1456,7 +1504,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eddytwist.Multipasta;
 				PRODUCT_MODULE_NAME = Maccy;
 				PRODUCT_NAME = Multipasta;

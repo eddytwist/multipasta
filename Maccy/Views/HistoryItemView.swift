@@ -53,9 +53,10 @@ struct HistoryItemView: View {
       isSelected: item.isSelected,
       selectionIndex: item.multiSelectionIndex,
       selectionAppearance: selectionAppearance,
-      accessibilityLabel: item.accessibilityLabel
+      // Multipasta: lists made by list copy get a tag and up to three lines (Maccy/ListCopy).
+      accessibilityLabel: ListCopyRowTitle.accessibilityLabel(for: item)
     ) {
-      Text(verbatim: item.title)
+      ListCopyRowTitle(item: item)
     }
     .accessibilityIdentifier("copy-history-item")
     .buttonAction(performSelect)

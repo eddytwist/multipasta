@@ -106,3 +106,30 @@
 "MaccyImportErrorRead %@" = "Не удалось прочитать историю Maccy: %@";
 "MaccyImportErrorMultipastaRead %@" = "Не удалось прочитать историю Multipasta: %@";
 "MaccyImportErrorSave %@" = "Не удалось сохранить импортированные записи: %@";
+
+/* List copy: General tab shortcut, Advanced sheet "Lists" section, HUD, popup tag, Accessibility alert */
+"AddToList" = "Добавить в список";
+"AddToListTooltip" = "Копирует выделенный текст в список, по строке за нажатие. ⌘V вставляет весь список.";
+"Lists" = "Списки";
+"ListFormat" = "Формат списка";
+"ListFormatPlain" = "Просто строки";
+"ListFormatBullets" = "• Маркеры";
+"ListFormatNumbered" = "1. Нумерация";
+"ListTimeout" = "Начинать новый список через";
+"ListTimeoutHour" = "1 час";
+"ListTimeoutNever" = "Никогда";
+"ListsCaption" = "Новый список начинается и после вставки текущего.";
+"ListHUDAdded %lld" = "Добавлено в список · %lld";
+"ListHUDNewList %lld" = "Новый список · %lld";
+"ListHUDNothingToAdd" = "Нечего добавить — выделите текст";
+"ListHUDOnlyText" = "В список добавляется только текст";
+"ListTag %lld" = "СПИСОК · %lld";
+"ListAccessibilityTitle" = "Для списка нужен Универсальный доступ";
+"ListAccessibilityMessage" = "Multipasta нажимает ⌘C в активной программе, чтобы скопировать выделенный текст. Включите Multipasta в Системных настройках → Конфиденциальность и безопасность → Универсальный доступ.";
+"ListAccessibilityCancel" = "Отменить";
+"ListHUDHidden" = "Скрытое не добавляется";
+"ListHUDPaused" = "Не добавлено — новые копирования не записываются";
+"ListHUDIgnored" = "Не добавлено — исключено в настройках";
+"ShortcutUsedByOpenHistory" = "Это сочетание уже открывает историю.";
+"ShortcutUsedByAddToList" = "Это сочетание уже добавляет в список.";
+"AddToListTurnedOff" = "Выключено: совпадало с «Открыть историю»";

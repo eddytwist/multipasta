@@ -46,6 +46,8 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
 - **Paste where you are.** Press ⇧⌘V, type to search, press Return: the item is pasted into the front app. ⌥Return
   only copies it, ⌥⇧Return pastes it without formatting.
 - **Preview.** Images, files and text too long for its row open in a preview panel next to the list.
+- **List copy.** ⇧⌘C adds the selected text to a list, one line per copy; ⌘V pastes the whole list. The list is one
+  item in the history, tagged LIST, and the format (plain lines, bullets or numbers) is in Settings → Advanced.
 - **⌘Q guard.** In the apps you choose, ⌘Q quits only if you hold it for 1 second; a ring shows the progress. A quick
   ⌘Q by mistake does nothing.
 - **Ignore what shouldn't be saved.** Skip whole apps, pasteboard types or text that matches a regular expression.
@@ -80,7 +82,7 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
 2. Open Multipasta. macOS says it can't verify the app: close the message (don't move the app to the Trash).
 3. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. You do this once.
 4. Press ⇧⌘V, click **Settings…** → **Quit** → **Open System Settings** and turn on Multipasta under
-   **Accessibility**. Pasting and the ⌘Q guard need it.
+   **Accessibility**. Pasting, list copy and the ⌘Q guard need it.
 
 Step 3 is there because the app isn't notarized by Apple: I don't have a paid Apple Developer account. Releases are
 signed with the same certificate every time, so updates keep the Accessibility permission.
@@ -107,9 +109,9 @@ Maccy is a great app and is actively maintained. If you don't need these extras,
 <details>
 <summary><b>Why does it need Accessibility?</b></summary>
 
-To paste, Multipasta presses ⌘V for you in the front app, and macOS allows that only to apps with Accessibility. The
-⌘Q guard needs it too: it watches for ⌘Q while one of your guarded apps is in front. Without it, Multipasta still
-keeps the history and copies items, but can't paste or guard ⌘Q.
+To paste, Multipasta presses ⌘V for you in the front app, and macOS allows that only to apps with Accessibility. To add
+to a list, it presses ⌘C the same way. The ⌘Q guard needs it too: it watches for ⌘Q while one of your guarded apps is in front. Without it, Multipasta still
+keeps the history and copies items, but can't paste, add to a list or guard ⌘Q.
 
 </details>
 
@@ -139,6 +141,25 @@ To start over, quit Multipasta and delete both.
 Most password managers mark what they copy as concealed or transient, and Multipasta, like Maccy, never saves those.
 It also skips 1Password and KeeWeb types by default. For an app that doesn't mark its copies, add it in **Settings →
 History → Don't save from these apps**. **Advanced…** also has ignored pasteboard types and regular expressions.
+List copy follows the same rules: what the history wouldn't save isn't added to a list either.
+
+</details>
+
+<details>
+<summary><b>When does a new list start?</b></summary>
+
+Press ⇧⌘C in any app and the selected text becomes the next line of the list; the whole list is on the clipboard, so
+⌘V pastes it. Once you paste it, with ⌘V or from the history, the next ⇧⌘C starts a new list. So does a ⇧⌘C more than
+15 minutes after the last one (change the time or turn it off in **Settings → History → Advanced… → Lists**), after
+you pin the list, delete it or clear the history. The message after each ⇧⌘C shows the line number, and 1 means a new
+list.
+
+Multipasta learns about the paste when an app asks the clipboard for the list's text. Apps that read the clipboard
+themselves, such as other clipboard managers, ask for it too, so they may end a list early. For the same reason a list
+stays on this Mac: Universal Clipboard doesn't pass it to your iPhone or iPad.
+
+⇧⌘C is a shortcut in some apps (Chrome's developer tools, Finder); while Multipasta has it, they don't get it. Pick
+another one in Settings → General if you need theirs.
 
 </details>
 
@@ -156,6 +177,7 @@ apps, so ⌘Q isn't guarded until it's off. The Quit tab says when this happens.
 | Shortcut | Action |
 |---|---|
 | <kbd>⇧</kbd> <kbd>⌘</kbd> <kbd>V</kbd> | Open the history (change it in Settings → General) |
+| <kbd>⇧</kbd> <kbd>⌘</kbd> <kbd>C</kbd> | Add the selected text to the list (anywhere; change it in Settings → General) |
 | Type | Search |
 | <kbd>↑</kbd> <kbd>↓</kbd> | Move the selection |
 | <kbd>Return</kbd> | Paste into the front app (or only copy, with Paste on Enter off) |

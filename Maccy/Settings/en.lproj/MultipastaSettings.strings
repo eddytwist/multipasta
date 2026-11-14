@@ -106,3 +106,30 @@
 "MaccyImportErrorRead %@" = "Couldn't read Maccy's history: %@";
 "MaccyImportErrorMultipastaRead %@" = "Couldn't read Multipasta's history: %@";
 "MaccyImportErrorSave %@" = "Couldn't save the imported items: %@";
+
+/* List copy: General tab shortcut, Advanced sheet "Lists" section, HUD, popup tag, Accessibility alert */
+"AddToList" = "Add to list";
+"AddToListTooltip" = "Copies the selected text into a list, one line per press. ⌘V pastes the whole list.";
+"Lists" = "Lists";
+"ListFormat" = "List format";
+"ListFormatPlain" = "Plain lines";
+"ListFormatBullets" = "• Bullets";
+"ListFormatNumbered" = "1. Numbered";
+"ListTimeout" = "Start a new list after";
+"ListTimeoutHour" = "1 hour";
+"ListTimeoutNever" = "Never";
+"ListsCaption" = "A new list also starts after you paste the current one.";
+"ListHUDAdded %lld" = "Added to list · %lld";
+"ListHUDNewList %lld" = "New list · %lld";
+"ListHUDNothingToAdd" = "Nothing to add — select text";
+"ListHUDOnlyText" = "Only text can go into a list";
+"ListTag %lld" = "LIST · %lld";
+"ListAccessibilityTitle" = "Add to list needs Accessibility";
+"ListAccessibilityMessage" = "Multipasta presses ⌘C in the front app to copy the selected text. Turn on Multipasta in System Settings → Privacy & Security → Accessibility.";
+"ListAccessibilityCancel" = "Cancel";
+"ListHUDHidden" = "Hidden content isn't added";
+"ListHUDPaused" = "Not added — new copies are ignored";
+"ListHUDIgnored" = "Not added — ignored in Settings";
+"ShortcutUsedByOpenHistory" = "This shortcut already opens the history.";
+"ShortcutUsedByAddToList" = "This shortcut already adds to the list.";
+"AddToListTurnedOff" = "Turned off: it was the same as Open history";

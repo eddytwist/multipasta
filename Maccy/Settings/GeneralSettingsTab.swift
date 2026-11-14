@@ -19,6 +19,9 @@ struct GeneralSettingsTab: View {
     Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
   }
 
+  // Multipasta: set when Add to list was turned off for having Open history's shortcut.
+  @Default(.addToListTurnedOffAsDuplicate) private var addToListTurnedOff
+
   var body: some View {
     Form {
       Section {
@@ -34,7 +37,29 @@ struct GeneralSettingsTab: View {
         }) {
           Text("OpenHistory", tableName: "MultipastaSettings")
         }
+        // Multipasta: one combination can't open the history and add to the list.
+        .shortcutValidation { shortcut in
+          ListCopy.isDuplicate(shortcut, of: KeyboardShortcuts.getShortcut(for: .addToList))
+            ? .disallow(reason: NSLocalizedString("ShortcutUsedByAddToList", tableName: "MultipastaSettings", comment: ""))
+            : .allow
+        }
         .help(Text("OpenTooltip", tableName: "GeneralSettings"))
+
+        // Multipasta: list copy (Maccy/ListCopy).
+        KeyboardShortcuts.Recorder(for: .addToList, onChange: { _ in
+          addToListTurnedOff = false
+        }) {
+          Text("AddToList", tableName: "MultipastaSettings")
+          if addToListTurnedOff {
+            Text("AddToListTurnedOff", tableName: "MultipastaSettings")
+          }
+        }
+        .shortcutValidation { shortcut in
+          ListCopy.isDuplicate(shortcut, of: KeyboardShortcuts.getShortcut(for: .popup))
+            ? .disallow(reason: NSLocalizedString("ShortcutUsedByOpenHistory", tableName: "MultipastaSettings", comment: ""))
+            : .allow
+        }
+        .help(Text("AddToListTooltip", tableName: "MultipastaSettings"))
 
         Defaults.Toggle(key: .pasteByDefault) {
           Text("PasteOnEnter", tableName: "MultipastaSettings")
@@ -72,6 +97,10 @@ struct GeneralSettingsTab: View {
     .scrollDisabled(true)
     .frame(width: SettingsLayout.width)
     .fixedSize(horizontal: false, vertical: true)
+    // The note about Add to list is shown once.
+    .onDisappear {
+      addToListTurnedOff = false
+    }
   }
 }
 

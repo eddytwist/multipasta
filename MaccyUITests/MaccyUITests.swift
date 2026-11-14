@@ -73,6 +73,8 @@ class MaccyUITests: XCTestCase {
     setKeyboardShortcut("pin", keyCode: kVK_ANSI_P, modifiers: optionKey)
     setKeyboardShortcut("delete", keyCode: kVK_Delete, modifiers: optionKey)
     setKeyboardShortcut("togglePreview", keyCode: kVK_Space, modifiers: controlKey)
+    // The popup uses ⇧⌘C here, the default of list copy: move list copy out of its way.
+    setKeyboardShortcut("addToList", keyCode: kVK_ANSI_L, modifiers: cmdKey | optionKey | controlKey)
     app.launch()
 
     copyToClipboard(copy2)

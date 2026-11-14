@@ -77,4 +77,10 @@ nonisolated extension Defaults.Keys {
   static let previewWidth = Key<CGFloat>("previewWidth", default: 400, suite: preferencesSuite)
   // Multipasta: bundle identifiers of the apps where ⌘Q has to be held to quit. Empty means off.
   static let quitGuardApps = Key<[String]>("quitGuardApps", default: [], suite: preferencesSuite)
+  // Multipasta: list copy (Maccy/ListCopy).
+  static let listFormat = Key<ListFormat>("listFormat", default: .plain, suite: preferencesSuite)
+  static let listTimeout = Key<ListTimeout>("listTimeout", default: .fifteenMinutes, suite: preferencesSuite)
+  static let addToListTurnedOffAsDuplicate = Key<Bool>(
+    "addToListTurnedOffAsDuplicate", default: false, suite: preferencesSuite
+  )
 }
