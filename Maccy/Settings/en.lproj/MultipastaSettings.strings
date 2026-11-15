@@ -133,3 +133,4 @@
 "ShortcutUsedByOpenHistory" = "This shortcut already opens the history.";
 "ShortcutUsedByAddToList" = "This shortcut already adds to the list.";
 "AddToListTurnedOff" = "Turned off: it was the same as Open history";
+"BasedOnMaccyLine" = "Based on Maccy by Alex Rodionov (MIT)";

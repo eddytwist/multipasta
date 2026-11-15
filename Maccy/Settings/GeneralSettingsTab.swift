@@ -7,6 +7,15 @@ import LaunchAtLogin
 // Maccy's own GeneralSettingsPane is kept untouched to keep upstream merges cheap;
 // the settings it had that are not shown here live in AdvancedSettingsSheet.
 struct GeneralSettingsTab: View {
+  /// README screenshots leave the version out, so they don't go stale with every release.
+  private static var hidesVersion: Bool {
+    #if DEBUG
+    return AppDelegate.readmeScreenshotAppearance != nil
+    #else
+    return false
+    #endif
+  }
+
   static let maccyURL = URL(string: "https://github.com/p0deje/Maccy")!
 
   private var appName: String {
@@ -78,7 +87,11 @@ struct GeneralSettingsTab: View {
           }
           .help(Self.maccyURL.absoluteString)
         } label: {
-          Text("VersionLine \(version)", tableName: "MultipastaSettings")
+          if Self.hidesVersion {
+            Text("BasedOnMaccyLine", tableName: "MultipastaSettings")
+          } else {
+            Text("VersionLine \(version)", tableName: "MultipastaSettings")
+          }
         }
 
         HStack {

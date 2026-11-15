@@ -133,3 +133,4 @@
 "ShortcutUsedByOpenHistory" = "Это сочетание уже открывает историю.";
 "ShortcutUsedByAddToList" = "Это сочетание уже добавляет в список.";
 "AddToListTurnedOff" = "Выключено: совпадало с «Открыть историю»";
+"BasedOnMaccyLine" = "Основано на Maccy, автор Alex Rodionov (MIT)";
