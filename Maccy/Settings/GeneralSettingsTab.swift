@@ -30,6 +30,8 @@ struct GeneralSettingsTab: View {
 
   // Multipasta: set when Add to list was turned off for having Open history's shortcut.
   @Default(.addToListTurnedOffAsDuplicate) private var addToListTurnedOff
+  /// The list sound can only play with an Add to list shortcut.
+  @State private var hasListShortcut = KeyboardShortcuts.getShortcut(for: .addToList) != nil
 
   var body: some View {
     Form {
@@ -55,8 +57,9 @@ struct GeneralSettingsTab: View {
         .help(Text("OpenTooltip", tableName: "GeneralSettings"))
 
         // Multipasta: list copy (Maccy/ListCopy).
-        KeyboardShortcuts.Recorder(for: .addToList, onChange: { _ in
+        KeyboardShortcuts.Recorder(for: .addToList, onChange: { newShortcut in
           addToListTurnedOff = false
+          hasListShortcut = newShortcut != nil
         }) {
           Text("AddToList", tableName: "MultipastaSettings")
           if addToListTurnedOff {
@@ -78,6 +81,28 @@ struct GeneralSettingsTab: View {
         LaunchAtLogin.Toggle {
           Text("LaunchAtLogin", tableName: "MultipastaSettings")
         }
+      }
+
+      // Multipasta: feedback sounds (Maccy/Sounds/SoundPlayer.swift).
+      Section {
+        Defaults.Toggle(key: .playCopySound) {
+          Text("SoundOnCopy", tableName: "MultipastaSettings")
+        }
+        .help(Text("SoundOnCopyTooltip", tableName: "MultipastaSettings"))
+
+        // A disabled control shows no tooltip, so the row around it carries it.
+        HStack {
+          Defaults.Toggle(key: .playListSound) {
+            Text("SoundOnList", tableName: "MultipastaSettings")
+          }
+          .disabled(!hasListShortcut)
+        }
+        .help(Text(
+          LocalizedStringKey(hasListShortcut ? "SoundOnListTooltip" : "SoundOnListNeedsShortcut"),
+          tableName: "MultipastaSettings"
+        ))
+      } header: {
+        Text("Sounds", tableName: "MultipastaSettings")
       }
 
       Section {
@@ -111,6 +136,9 @@ struct GeneralSettingsTab: View {
     .frame(width: SettingsLayout.width)
     .fixedSize(horizontal: false, vertical: true)
     // The note about Add to list is shown once.
+    .onAppear {
+      hasListShortcut = KeyboardShortcuts.getShortcut(for: .addToList) != nil
+    }
     .onDisappear {
       addToListTurnedOff = false
     }

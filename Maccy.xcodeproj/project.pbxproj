@@ -84,7 +84,9 @@
 		DA20FA722B082DD600056DD5 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA20FA712B082DD600056DD5 /* Notifier.swift */; };
 		DA20FA742B082E0100056DD5 /* Knock.caf in Resources */ = {isa = PBXBuildFile; fileRef = DA20FA732B082E0100056DD5 /* Knock.caf */; };
 		DA20FA762B082E0800056DD5 /* Write.caf in Resources */ = {isa = PBXBuildFile; fileRef = DA20FA752B082E0800056DD5 /* Write.caf */; };
-		DA20FA782B082E1A00056DD5 /* NSSound+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA20FA772B082E1A00056DD5 /* NSSound+Named.swift */; };
+		AB10F3022ED0000100A1B001 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F3012ED0000100A1B001 /* SoundPlayer.swift */; };
+		AB10F3042ED0000100A1B001 /* WriteDouble.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB10F3032ED0000100A1B001 /* WriteDouble.caf */; };
+		AB10F3062ED0000100A1B001 /* SoundPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F3052ED0000100A1B001 /* SoundPlayerTests.swift */; };
 		DA243D122C2F64830012A27F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA243D112C2F64820012A27F /* ContentView.swift */; };
 		DA243D142C2F66DD0012A27F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA243D132C2F66DD0012A27F /* Storage.swift */; };
 		DA360DB31E3DF137005C6F6B /* HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA360DB21E3DF137005C6F6B /* HistoryTests.swift */; };
@@ -291,7 +293,9 @@
 		DA20FA712B082DD600056DD5 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		DA20FA732B082E0100056DD5 /* Knock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Knock.caf; sourceTree = "<group>"; };
 		DA20FA752B082E0800056DD5 /* Write.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Write.caf; sourceTree = "<group>"; };
-		DA20FA772B082E1A00056DD5 /* NSSound+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSound+Named.swift"; sourceTree = "<group>"; };
+		AB10F3012ED0000100A1B001 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		AB10F3032ED0000100A1B001 /* WriteDouble.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WriteDouble.caf; sourceTree = "<group>"; };
+		AB10F3052ED0000100A1B001 /* SoundPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayerTests.swift; sourceTree = "<group>"; };
 		DA243D112C2F64820012A27F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA243D132C2F66DD0012A27F /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		DA360DB01E3DF137005C6F6B /* MaccyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaccyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -465,7 +469,6 @@
 				DA6491AF29ABCF2400837D93 /* NSScreen+ForPopup.swift */,
 				DAA072E62C423617006DDFD2 /* NSSize+DefaultsSerializable.swift */,
 				2F8B9DE52C5D6E5D0046EF69 /* NSPoint+DefaultsSerializable.swift */,
-				DA20FA772B082E1A00056DD5 /* NSSound+Named.swift */,
 				0ABDD5112BB47F1E0054963B /* NSWorkspace+ApplicationName.swift */,
 				DA3F1B442C90083800267632 /* Sauce+KeyboardShortcuts.swift */,
 				DA181176247D14DA00066D55 /* Settings.PaneIdentifier+Panes.swift */,
@@ -579,6 +582,8 @@
 			children = (
 				DA20FA732B082E0100056DD5 /* Knock.caf */,
 				DA20FA752B082E0800056DD5 /* Write.caf */,
+				AB10F3032ED0000100A1B001 /* WriteDouble.caf */,
+				AB10F3012ED0000100A1B001 /* SoundPlayer.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 				AB10F10D2ED0000100A1B001 /* ListSessionTests.swift */,
 				AB10F2012ED0000100A1B001 /* ListCopyHistoryTests.swift */,
 				AB10F2032ED0000100A1B001 /* ListCopyTests.swift */,
+				AB10F3052ED0000100A1B001 /* SoundPlayerTests.swift */,
 				DA360DB41E3DF137005C6F6B /* Info.plist */,
 				4CB7148030897A9E00A357EC /* SharedStateTests.swift */,
 			);
@@ -906,6 +912,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA20FA762B082E0800056DD5 /* Write.caf in Resources */,
+				AB10F3042ED0000100A1B001 /* WriteDouble.caf in Resources */,
 				DA6373981E4AB9BB00263391 /* Assets.xcassets in Resources */,
 				DAA365D12C4C147400A394F8 /* PinsSettings.strings in Resources */,
 				DA689FCF2C1DEE570009B887 /* AppearanceSettings.strings in Resources */,
@@ -953,6 +960,7 @@
 				AB10F10E2ED0000100A1B001 /* ListSessionTests.swift in Sources */,
 				AB10F2022ED0000100A1B001 /* ListCopyHistoryTests.swift in Sources */,
 				AB10F2042ED0000100A1B001 /* ListCopyTests.swift in Sources */,
+				AB10F3062ED0000100A1B001 /* SoundPlayerTests.swift in Sources */,
 				CA110ED10000000000000001 /* CollectionSurroundingTests.swift in Sources */,
 				C0FFEE000000000000000003 /* ShortenedTests.swift in Sources */,
 				FFFC00000000000000000003 /* UnsafeForTitleLayoutTests.swift in Sources */,
@@ -1069,6 +1077,7 @@
 				DA9C3C5E2C20E1190056795D /* IgnoreApplicationsSettingsView.swift in Sources */,
 				2F0EC7872E774099003E2EA9 /* PasteStackItemView.swift in Sources */,
 				DA20FA722B082DD600056DD5 /* Notifier.swift in Sources */,
+				AB10F3022ED0000100A1B001 /* SoundPlayer.swift in Sources */,
 				2FD4993E2FFBA57800149F02 /* PinManager.swift in Sources */,
 				2F578C3F2EFFE8720088B759 /* SlideoutController.swift in Sources */,
 				2F1B61CF301BE55F000905F9 /* EnumeratedForEach.swift in Sources */,
@@ -1097,7 +1106,6 @@
 				DAE28500232257D20080E394 /* ColorImage.swift in Sources */,
 				DA7A753E26A52F0F00DC16EF /* NSImage+Names.swift in Sources */,
 				2F0EC7852E774083003E2EA9 /* PasteStackView.swift in Sources */,
-				DA20FA782B082E1A00056DD5 /* NSSound+Named.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1452,7 +1460,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1468,7 +1476,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eddytwist.Multipasta;
 				PRODUCT_MODULE_NAME = Maccy;
 				PRODUCT_NAME = Multipasta;
@@ -1489,7 +1497,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1504,7 +1512,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eddytwist.Multipasta;
 				PRODUCT_MODULE_NAME = Maccy;
 				PRODUCT_NAME = Multipasta;

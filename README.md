@@ -48,6 +48,8 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
 - **Preview.** Images, files and text too long for its row open in a preview panel next to the list.
 - **List copy.** ⇧⌘C adds the selected text to a list, one line per copy; ⌘V pastes the whole list. The list is one
   item in the history, tagged LIST, and the format (plain lines, bullets or numbers) is in Settings → Advanced.
+- **Sounds.** A soft pen stroke when a copy is saved, a knock when you pick an item from the history, two strokes when
+  a line goes into a list. Copies and lists each have their own switch in Settings → General.
 - **⌘Q guard.** In the apps you choose, ⌘Q quits only if you hold it for 1 second; a ring shows the progress. A quick
   ⌘Q by mistake does nothing.
 - **Ignore what shouldn't be saved.** Skip whole apps, pasteboard types or text that matches a regular expression.
@@ -199,6 +201,17 @@ If your shortcut doesn't work in password fields, see
 </details>
 
 <details>
+<summary><b>I don't hear the sounds</b></summary>
+
+Check that **Play sound when copying** and **Play sound when copying to a list** are on in **Settings → General**. The
+sounds are macOS interface sounds: they are silent when **Play user interface sound effects** is off in **System
+Settings → Sound**, and they follow the **Alert volume** there. A copy that isn't saved (history paused, an ignored
+app, a password) plays nothing. Focus and Do Not Disturb don't silence them, like other sounds that answer your own
+key press.
+
+</details>
+
+<details>
 <summary><b>How do I uninstall it?</b></summary>
 
 Turn off **Launch at login**, quit Multipasta and move it to the Trash. Delete the history and settings listed above
@@ -221,4 +234,4 @@ keep Maccy's names to make merging upstream changes easier.
 ## Credits & license
 
 [MIT](LICENSE). Multipasta is based on [Maccy](https://github.com/p0deje/Maccy) © Alex Rodionov, also MIT; his
-copyright notice is kept in [LICENSE](LICENSE). Changes © 2026 Eduard Ivanov · [eddytwist.com](https://eddytwist.com)
+copyright notice is kept in [LICENSE](LICENSE). The pen and knock sounds come from Maccy too; the list sound is made from Maccy's pen sound. Changes © 2026 Eduard Ivanov · [eddytwist.com](https://eddytwist.com)

@@ -26,6 +26,7 @@ extension SharedStateTests {
     var huds: [ListCopyHUDMessage] = []
     var seenChangeCounts: [Int] = []
     var alerts = 0
+    var listSounds = 0
     var trusted = true
     var frontmostApp: String? = "com.apple.TextEdit"
     /// What the front app does on ⌘C.
@@ -43,7 +44,8 @@ extension SharedStateTests {
       showAccessibilityAlert: { [unowned self] in alerts += 1 },
       markPasteboardSeen: { [unowned self] in seenChangeCounts.append($0) },
       copyTimeout: 0.25,
-      snapshotLimit: 1_000
+      snapshotLimit: 1_000,
+      playListSound: { [unowned self] in listSounds += 1 }
     ))
 
     init() {
@@ -146,6 +148,26 @@ extension SharedStateTests {
       await listCopy.add()
       #expect(huds == [.newList, .added(count: 2)])
       #expect(listCopy.session.entries == ["milk", "bread"])
+    }
+
+    @Test("Every added line plays the list sound, the first and the later ones; Nothing to add doesn't")
+    func listSound() async {
+      await press(copying: "milk")
+      await press(copying: "bread")
+      await press(copying: "eggs")
+      #expect(listSounds == 3)
+
+      await press(copying: nil)
+      #expect(huds.last == .nothingToAdd)
+      #expect(listSounds == 3)
+    }
+
+    @Test("A refused copy plays no list sound")
+    func refusedNoSound() async {
+      Defaults[.ignoredApps] = ["com.apple.TextEdit"]
+      await press(copying: "secret")
+      #expect(huds == [.ignored])
+      #expect(listSounds == 0)
     }
 
     // MARK: - Nothing or non-text

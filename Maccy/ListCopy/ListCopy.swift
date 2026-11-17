@@ -43,6 +43,8 @@ final class ListCopy { // swiftlint:disable:this type_body_length
     var copyTimeout: TimeInterval = 1.5
     /// The most the previous clipboard may weigh to be kept for putting back.
     var snapshotLimit = PasteboardSnapshot.defaultLimit
+    /// Plays the list sound (Settings → General → Sounds).
+    var playListSound: @MainActor () -> Void = {}
 
     static func live(hud: ListCopyHUD) -> Environment {
       Environment(
@@ -55,7 +57,8 @@ final class ListCopy { // swiftlint:disable:this type_body_length
         hasOwnKeyWindow: { NSApp.isActive || NSApp.keyWindow?.isVisible == true },
         showHUD: { hud.show($0) },
         showAccessibilityAlert: { ListCopy.showAccessibilityAlert() },
-        markPasteboardSeen: { Clipboard.shared.changeCount = $0 }
+        markPasteboardSeen: { Clipboard.shared.changeCount = $0 },
+        playListSound: { SoundPlayer.shared.play(.writeDouble) }
       )
     }
   }
@@ -381,6 +384,7 @@ final class ListCopy { // swiftlint:disable:this type_body_length
       writeList(text: text, count: count)
       environment.markPasteboardSeen(pasteboard.changeCount)
       environment.showHUD(startedNewList ? .newList : .added(count: count))
+      environment.playListSound()
       Self.logger.info("Added to list: \(count) entries")
     }
   }
@@ -468,7 +472,7 @@ final class ListCopy { // swiftlint:disable:this type_body_length
     item.firstCopiedAt = date
     item.lastCopiedAt = date
     item.title = item.generateTitle()
-    // The HUD already tells: no notification or sound.
+    // The list sound plays for every line where the HUD shows, not here (first line only).
     historyItem = History.shared.add(item, notify: false).item
   }
 

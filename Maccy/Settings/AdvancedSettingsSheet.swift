@@ -47,10 +47,6 @@ struct AdvancedSettingsSheet: View { // swiftlint:disable:this type_body_length
   @Default(.pasteByDefault) private var pasteByDefault
   @Default(.removeFormattingByDefault) private var removeFormattingByDefault
 
-  private let notificationsURL = URL(
-    string: "x-apple.systempreferences:com.apple.preference.notifications?id=\(Bundle.main.bundleIdentifier ?? "")"
-  )
-
   private let checkIntervalFormatter: NumberFormatter = {
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal
@@ -416,17 +412,6 @@ struct AdvancedSettingsSheet: View { // swiftlint:disable:this type_body_length
         Text("ShowFooter", tableName: "MultipastaSettings")
         if !showFooter {
           Text("ShowFooterCaption", tableName: "MultipastaSettings")
-        }
-      }
-
-      if let notificationsURL {
-        LabeledContent {
-          Link(destination: notificationsURL) {
-            Image(systemName: "arrow.up.forward.app")
-          }
-          .accessibilityLabel(Text("NotificationsAndSounds", tableName: "MultipastaSettings"))
-        } label: {
-          Text("NotificationsAndSounds", tableName: "MultipastaSettings")
         }
       }
     } header: {

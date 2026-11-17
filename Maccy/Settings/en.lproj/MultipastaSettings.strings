@@ -72,7 +72,6 @@
 "ShowSpecialSymbols" = "Show special symbols";
 "ShowFooter" = "Show footer";
 "ShowFooterCaption" = "When the footer is hidden, press ⌘, in the popup to open Settings.";
-"NotificationsAndSounds" = "Notifications and sounds…";
 "Shortcuts" = "Shortcuts";
 "PinShortcut" = "Pin item";
 "DeleteShortcut" = "Delete item";
@@ -134,3 +133,11 @@
 "ShortcutUsedByAddToList" = "This shortcut already adds to the list.";
 "AddToListTurnedOff" = "Turned off: it was the same as Open history";
 "BasedOnMaccyLine" = "Based on Maccy by Alex Rodionov (MIT)";
+
+/* Sounds (Maccy/Sounds/SoundPlayer.swift) */
+"Sounds" = "Sounds";
+"SoundOnCopy" = "Play sound when copying";
+"SoundOnList" = "Play sound when copying to a list";
+"SoundOnCopyTooltip" = "When you copy with ⌘C or choose an item from history. Silent when “Play user interface sound effects” is off in Sound settings.";
+"SoundOnListTooltip" = "Two short strokes, so you can tell a list from a copy. Silent when “Play user interface sound effects” is off in Sound settings.";
+"SoundOnListNeedsShortcut" = "Set the Add to list shortcut first.";

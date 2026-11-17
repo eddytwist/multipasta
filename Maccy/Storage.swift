@@ -16,7 +16,10 @@ class Storage {
     return ByteCountFormatter().string(fromByteCount: size)
   }
 
-  private let url = URL.applicationSupportDirectory.appending(path: "Multipasta/Storage.sqlite")
+  // Multipasta: also read at launch, before the store exists, to tell a new install (SoundPlayer.swift).
+  nonisolated static let fileURL = URL.applicationSupportDirectory.appending(path: "Multipasta/Storage.sqlite")
+
+  private let url = Storage.fileURL
 
   init() {
     var config = ModelConfiguration(url: url)

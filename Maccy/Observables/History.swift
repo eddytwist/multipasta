@@ -159,6 +159,8 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
   @discardableResult
   @MainActor
   func add(_ item: HistoryItem, notify: Bool = true) -> HistoryItemDecorator {
+    // Multipasta: read before a duplicate's contents replace the item's.
+    let fromMaccy = item.fromMaccy
     if #available(macOS 15.0, *) {
       try? History.shared.insertIntoStorage(item)
     } else {
@@ -187,7 +189,12 @@ class History: ItemsContainer { // swiftlint:disable:this type_body_length
         }
       }
       deleteFromStorage(existingHistoryItem)
-    } else if notify { // Multipasta: list copy shows its own HUD instead.
+    }
+
+    // Multipasta: every recorded copy plays, a duplicate too, so silence means "not recorded".
+    // Not a copy Multipasta made itself (choosing from history plays its own sound) and not list
+    // copy, which plays its own sound (Maccy/ListCopy).
+    if notify && !fromMaccy {
       Task {
         Notifier.notify(body: item.title, sound: .write)
       }

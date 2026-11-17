@@ -46,6 +46,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private var statusItemVisibilityObserver: NSKeyValueObservation?
 
   func applicationWillFinishLaunching(_ notification: Notification) { // swiftlint:disable:this function_body_length
+    // Multipasta: before anything creates the history store, which tells a new install from an
+    // update for the sound settings (Maccy/Sounds/SoundPlayer.swift).
+    let storeExisted = FileManager.default.fileExists(atPath: Storage.fileURL.path(percentEncoded: false))
+
     #if DEBUG
     if Self.isTesting {
       // Start from a clean slate for the isolated testing preferences.
@@ -54,6 +58,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       // so keep Maccy's copy-only behaviour there instead of sending ⌘V to the frontmost app.
       // This writes to the isolated testing suite only, not to the user's defaults.
       Defaults[.pasteByDefault] = false
+      // No feedback sounds while tests copy and paste (isolated testing suite only).
+      Defaults[.playCopySound] = false
+      Defaults[.playListSound] = false
       // The README screenshot test picks the appearance; `-AppleInterfaceStyle` no longer
       // changes an app's appearance.
       if let appearance = Self.readmeScreenshotAppearance {
@@ -61,6 +68,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       }
     }
     #endif
+
+    Task {
+      #if DEBUG
+      // Tests use an in-memory store: the user's store file says nothing about them.
+      await SoundSettingsMigration.run(storeExisted: storeExisted && !Self.isTesting)
+      #else
+      await SoundSettingsMigration.run(storeExisted: storeExisted)
+      #endif
+    }
 
     // Bridge FloatingPanel via AppDelegate.
     AppState.shared.appDelegate = self

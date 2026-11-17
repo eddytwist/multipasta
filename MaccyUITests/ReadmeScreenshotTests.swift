@@ -76,8 +76,10 @@ final class ReadmeScreenshotTests: XCTestCase {
       // The README names ⇧⌘V; show it in Settings and open the popup with it.
       "-KeyboardShortcuts_popup", shortcut(keyCode: kVK_ANSI_V, modifiers: cmdKey | shiftKey),
       "-KeyboardShortcuts_pin", shortcut(keyCode: kVK_ANSI_P, modifiers: optionKey),
-      // `enable-testing` turns Paste on Enter off; show the shipping default.
+      // `enable-testing` turns Paste on Enter and the sounds off; show the shipping defaults.
       "-pasteByDefault", "<true/>",
+      "-playCopySound", "<true/>",
+      "-playListSound", "<true/>",
       // Every sample would show the icon of whatever app happens to be in front.
       "-showApplicationIcons", "<false/>",
       "-popupPosition", "center",

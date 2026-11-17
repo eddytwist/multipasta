@@ -72,7 +72,6 @@
 "ShowSpecialSymbols" = "Показывать спецсимволы";
 "ShowFooter" = "Нижнее меню";
 "ShowFooterCaption" = "Когда нижнее меню скрыто, нажмите ⌘, в окне истории, чтобы открыть настройки.";
-"NotificationsAndSounds" = "Уведомления и звуки…";
 "Shortcuts" = "Сочетания клавиш";
 "PinShortcut" = "Закрепить запись";
 "DeleteShortcut" = "Удалить запись";
@@ -134,3 +133,11 @@
 "ShortcutUsedByAddToList" = "Это сочетание уже добавляет в список.";
 "AddToListTurnedOff" = "Выключено: совпадало с «Открыть историю»";
 "BasedOnMaccyLine" = "Основано на Maccy, автор Alex Rodionov (MIT)";
+
+/* Sounds (Maccy/Sounds/SoundPlayer.swift) */
+"Sounds" = "Звуки";
+"SoundOnCopy" = "Звук при копировании";
+"SoundOnList" = "Звук при копировании в список";
+"SoundOnCopyTooltip" = "При копировании через ⌘C и выборе записи из истории. Не звучит, если в настройках «Звук» выключено «Звуковые эффекты интерфейса».";
+"SoundOnListTooltip" = "Два коротких штриха — слышно, что это список. Не звучит, если в настройках «Звук» выключено «Звуковые эффекты интерфейса».";
+"SoundOnListNeedsShortcut" = "Сначала задайте сочетание «Добавить в список».";

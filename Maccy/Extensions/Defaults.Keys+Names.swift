@@ -83,4 +83,8 @@ nonisolated extension Defaults.Keys {
   static let addToListTurnedOffAsDuplicate = Key<Bool>(
     "addToListTurnedOffAsDuplicate", default: false, suite: preferencesSuite
   )
+  // Multipasta: feedback sounds (Maccy/Sounds/SoundPlayer.swift).
+  static let playCopySound = Key<Bool>("playCopySound", default: true, suite: preferencesSuite)
+  static let playListSound = Key<Bool>("playListSound", default: true, suite: preferencesSuite)
+  static let soundsMigrated = Key<Bool>("soundsMigrated", default: false, suite: preferencesSuite)
 }
