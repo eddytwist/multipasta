@@ -16,7 +16,7 @@ struct GeneralSettingsTab: View {
     #endif
   }
 
-  static let maccyURL = URL(string: "https://github.com/p0deje/Maccy")!
+  static let repositoryURL = URL(string: "https://github.com/eddytwist/multipasta")!
 
   private var appName: String {
     Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
@@ -32,6 +32,7 @@ struct GeneralSettingsTab: View {
   @Default(.addToListTurnedOffAsDuplicate) private var addToListTurnedOff
   /// The list sound can only play with an Add to list shortcut.
   @State private var hasListShortcut = KeyboardShortcuts.getShortcut(for: .addToList) != nil
+  @Bindable private var updater = SoftwareUpdater.shared
 
   var body: some View {
     Form {
@@ -107,20 +108,39 @@ struct GeneralSettingsTab: View {
 
       Section {
         LabeledContent {
-          Link(destination: Self.maccyURL) {
-            Text("MaccyOnGitHub", tableName: "MultipastaSettings")
+          Link(destination: Self.repositoryURL) {
+            Text("RepositoryOnGitHub", tableName: "MultipastaSettings")
           }
-          .help(Self.maccyURL.absoluteString)
+          .help(Self.repositoryURL.absoluteString)
         } label: {
           if Self.hidesVersion {
-            Text("BasedOnMaccyLine", tableName: "MultipastaSettings")
+            Text("CopyrightLine", tableName: "MultipastaSettings")
           } else {
             Text("VersionLine \(version)", tableName: "MultipastaSettings")
           }
         }
 
+        // Multipasta: in-app updates (Maccy/SoftwareUpdater.swift).
+        Toggle(isOn: $updater.automaticallyChecksForUpdates) {
+          Text("CheckForUpdatesAutomatically", tableName: "MultipastaSettings")
+          if let lastCheck = updater.lastCheckDate {
+            Text("LastChecked \(lastCheck.formatted(.relative(presentation: .named)))", tableName: "MultipastaSettings")
+          }
+        }
+        .help(Text("CheckForUpdatesTooltip", tableName: "MultipastaSettings"))
+
         HStack {
           Spacer()
+          Button {
+            updater.checkForUpdates()
+          } label: {
+            if let version = updater.pendingVersion {
+              Text("UpdateTo \(version)", tableName: "MultipastaSettings")
+            } else {
+              Text("CheckForUpdates", tableName: "MultipastaSettings")
+            }
+          }
+
           Button {
             AppState.shared.openAbout()
           } label: {

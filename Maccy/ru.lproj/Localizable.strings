@@ -32,4 +32,7 @@
 "toolbar_remove_paste_stack_action" = "Остановить стек вставки";
 "empty_history" = "Здесь появится то, что вы скопируете";
 "no_matches" = "Ничего не найдено";
-"about_credits" = "Основано на Maccy, автор Alex Rodionov (MIT)";
+
+/* Multipasta: footer item while an update waits (Maccy/SoftwareUpdater.swift) */
+"update_available" = "Доступно обновление…";
+"update_available_tooltip" = "Новая версия Multipasta готова к установке.";

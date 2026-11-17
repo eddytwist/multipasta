@@ -7,7 +7,7 @@
 <p><b>A clipboard history in your menu bar that also stops ⌘Q from quitting the wrong app.</b></p>
 
 <p>Press ⇧⌘V, find anything you copied and paste it into the app you're in.<br>
-Free and open source, for macOS 14 Sonoma or later. No network connections at all.</p>
+Free and open source, for macOS 14 Sonoma or later. Updates itself; nothing else goes online.</p>
 
 <p>
   <a href="https://github.com/eddytwist/multipasta/releases/latest/download/Multipasta.dmg"><img alt="Download for macOS" src="https://img.shields.io/badge/Download_for_macOS-Multipasta.dmg-0A84FF?style=for-the-badge&logo=apple&logoColor=white"></a>
@@ -24,7 +24,8 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
   - popup-light.png / popup-dark.png: the history popup opened with ⇧⌘V over an app, a few text items, an image item,
     one pinned item, the search field at the top; light and dark appearance.
   - settings-light.png / settings-dark.png: the Settings window, General tab (Open history and Add to list shortcuts,
-    Paste on Enter, Launch at login, the two sound switches); light and dark appearance.
+    Paste on Enter, Launch at login, the two sound switches, the update switch and Check for Updates); light and dark
+    appearance.
   - quit-settings-light.png / quit-settings-dark.png: the Settings window, Quit tab, with Terminal and Safari in the
     list. (The HUD itself can't be shown from a UI test: it needs ⌘Q held in a real guarded app.)
   Made by MaccyUITests/ReadmeScreenshotTests.swift (sample data, in-memory history), run with
@@ -56,14 +57,17 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
   Copies that password managers mark as concealed are never saved.
 - **Bring your Maccy history.** If Maccy is installed, Multipasta offers to import its history and pins once; Maccy's
   own history stays unchanged.
-- **Private.** History stays on your Mac. No accounts, no analytics, no update checks.
+- **Updates itself.** Once a day it checks GitHub for a new version. Nothing pops up: a dot on the menu bar icon and
+  **Update Available…** in the popup tell you, and one click installs it in place, keeping your history, settings and
+  Accessibility permission. You can turn the check off in Settings → General.
+- **Private.** History stays on your Mac. No accounts, no analytics, no crash reports.
 
 <table>
   <tr>
     <td width="60%" align="center">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/settings-dark.png">
-        <img alt="Settings, General tab: shortcuts to open the history and add to a list, Paste on Enter, Launch at login, and switches for the copy and list sounds" src="docs/screenshots/settings-light.png">
+        <img alt="Settings, General tab: shortcuts to open the history and add to a list, Paste on Enter, Launch at login, switches for the copy and list sounds, Check for updates automatically with a Check for Updates button, and the copyright line" src="docs/screenshots/settings-light.png">
       </picture>
       <p><sub>Three short tabs; the rest is under Advanced</sub></p>
     </td>
@@ -87,7 +91,8 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
    **Accessibility**. Pasting, list copy and the ⌘Q guard need it.
 
 Step 3 is there because the app isn't notarized by Apple: I don't have a paid Apple Developer account. Releases are
-signed with the same certificate every time, so updates keep the Accessibility permission.
+signed with the same certificate every time, so updates keep the Accessibility permission. From 0.4.0 on, Multipasta
+updates itself (Settings → General → **Check for Updates…**), and an update doesn't ask you to open it again.
 
 **If Return or ⌘1 doesn't paste**, macOS doesn't trust this copy of the app yet, even if the switch looks on. Open
 **System Settings → Privacy & Security → Accessibility**, select Multipasta, click **−**, then **+**, choose
@@ -124,8 +129,12 @@ The ⌘Q guard has to see and hold back a key press meant for another app, which
 watches the keyboard only while your ⌘Q list isn't empty, acts only on ⌘Q in the apps on that list, and doesn't record
 or store key presses.
 
-It never goes online: no update checks, no analytics, no crash reports. To hear about new versions, watch the
-repository's releases on GitHub.
+It goes online for one thing: updates. Once a day (and when you click **Check for Updates…**) it downloads a small
+feed from this repository's latest GitHub release. If there is a new version, it only marks it (a dot on the menu bar
+icon) and downloads it when you click **Install Update**. GitHub sees your IP address and the app's version, as with any download; your clipboard
+never leaves your Mac. The feed and the update are both checked against Multipasta's own signing key before anything
+is installed ([Sparkle](https://sparkle-project.org) does this). Turn off **Check for updates automatically** in
+Settings → General and it doesn't go online unless you click **Check for Updates…**. No analytics, no crash reports.
 
 </details>
 
@@ -234,4 +243,5 @@ keep Maccy's names to make merging upstream changes easier.
 ## Credits & license
 
 [MIT](LICENSE). Multipasta is based on [Maccy](https://github.com/p0deje/Maccy) © Alex Rodionov, also MIT; his
-copyright notice is kept in [LICENSE](LICENSE). The pen and knock sounds come from Maccy too; the list sound is made from Maccy's pen sound. Changes © 2026 Eduard Ivanov · [eddytwist.com](https://eddytwist.com)
+copyright notice is kept in [LICENSE](LICENSE). The pen and knock sounds come from Maccy too; the list sound is made from Maccy's pen sound. In-app updates use
+[Sparkle](https://sparkle-project.org) (MIT-style license, included in the app as `Sparkle-LICENSE.txt`). Changes © 2026 Eduard Ivanov · [eddytwist.com](https://eddytwist.com)

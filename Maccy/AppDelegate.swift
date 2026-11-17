@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     statusItem.behavior = .removalAllowed
     statusItem.button?.action = #selector(performStatusItemClick)
-    statusItem.button?.image = Defaults[.menuIcon].image
+    statusItem.button?.image = Self.statusImage(Defaults[.menuIcon].image)
     statusItem.button?.imagePosition = .imageLeft
     statusItem.button?.target = self
     return statusItem
@@ -104,9 +104,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     Task {
       for await value in Defaults.updates(.menuIcon, initial: false) {
-        statusItem.button?.image = value.image
+        statusItem.button?.image = Self.statusImage(value.image)
       }
     }
+
+    // Multipasta: a dot on the icon while an update waits (Maccy/SoftwareUpdater.swift).
+    observeUpdateDot()
 
     synchronizeMenuIconText()
     Task {
@@ -154,6 +157,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // Multipasta: the add-to-list shortcut (Maccy/ListCopy).
     ListCopy.shared.start()
+
+    // Multipasta: in-app updates (Maccy/SoftwareUpdater.swift). Tests stay offline, and a Debug
+    // build doesn't offer to replace itself with a release unless asked (`-MultipastaUpdater YES`).
+    #if DEBUG
+    let startsUpdater = !Self.isTesting && UserDefaults.standard.bool(forKey: "MultipastaUpdater")
+    #else
+    let startsUpdater = !Self.isTesting
+    #endif
+    if startsUpdater {
+      SoftwareUpdater.shared.start()
+    }
 
     // Multipasta: offer once to import the clipboard history of upstream Maccy.
     if !Self.isTesting {
@@ -248,6 +262,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     panel.toggle(height: AppState.shared.popup.height, at: .statusItem)
+  }
+
+  // MARK: - Multipasta: update dot
+
+  private func observeUpdateDot() {
+    withObservationTracking {
+      _ = SoftwareUpdater.shared.pendingVersion
+    } onChange: {
+      Task { @MainActor [weak self] in
+        guard let self else { return }
+        statusItem.button?.image = Self.statusImage(Defaults[.menuIcon].image)
+        observeUpdateDot()
+      }
+    }
+  }
+
+  /// The menu icon, with a small dot in its top right corner while an update waits.
+  @MainActor
+  static func statusImage(_ icon: NSImage) -> NSImage {
+    guard SoftwareUpdater.shared.pendingVersion != nil else { return icon }
+    let size = icon.size
+    let badged = NSImage(size: size, flipped: false) { rect in
+      icon.draw(in: rect)
+      let diameter = max(4, size.height * 0.3)
+      let dot = NSRect(x: rect.maxX - diameter, y: rect.maxY - diameter, width: diameter, height: diameter)
+      NSGraphicsContext.current?.compositingOperation = .clear
+      NSBezierPath(ovalIn: dot.insetBy(dx: -1, dy: -1)).fill()
+      NSGraphicsContext.current?.compositingOperation = .sourceOver
+      NSColor.black.setFill()
+      NSBezierPath(ovalIn: dot).fill()
+      return true
+    }
+    badged.isTemplate = icon.isTemplate
+    badged.accessibilityDescription = icon.accessibilityDescription
+    return badged
   }
 
   private func synchronizeMenuIconText() {

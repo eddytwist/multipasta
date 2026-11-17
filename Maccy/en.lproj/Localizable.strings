@@ -25,4 +25,7 @@
 "toolbar_remove_paste_stack_action" = "Stop paste stack";
 "empty_history" = "Copied items appear here";
 "no_matches" = "No matches";
-"about_credits" = "Based on Maccy by Alex Rodionov (MIT)";
+
+/* Multipasta: footer item while an update waits (Maccy/SoftwareUpdater.swift) */
+"update_available" = "Update Available…";
+"update_available_tooltip" = "A new version of Multipasta is ready to install.";

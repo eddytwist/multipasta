@@ -51,8 +51,14 @@ struct FooterView: View {
       }
 
       ForEach(footer.items.suffix(from: 2)) { item in
-        FooterItemView(item: item)
+        if item.isVisible {
+          FooterItemView(item: item)
+        }
       }
+    }
+    // Multipasta: "Update Available…" follows the updater (Maccy/SoftwareUpdater.swift).
+    .onChange(of: SoftwareUpdater.shared.pendingVersion, initial: true) { _, version in
+      footer.updateItem?.isVisible = version != nil
     }
     .invisible(!showFooter)
     .frame(maxHeight: showFooter ? nil : 0)

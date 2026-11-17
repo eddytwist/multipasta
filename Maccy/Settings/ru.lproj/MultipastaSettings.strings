@@ -8,9 +8,9 @@
 "PasteOnEnterCaption" = "Иначе только копирует; ⌥Enter — наоборот";
 "LaunchAtLogin" = "Запускать при входе";
 "About" = "О программе";
-"VersionLine %@" = "Версия %@ · основано на Maccy, автор Alex Rodionov (MIT)";
+"VersionLine %@" = "Версия %@ · © 2026 Eduard Ivanov";
 "AboutApp %@" = "О программе %@…";
-"MaccyOnGitHub" = "GitHub";
+"RepositoryOnGitHub" = "GitHub";
 
 /* History tab */
 "HistorySize" = "Размер истории";
@@ -132,7 +132,7 @@
 "ShortcutUsedByOpenHistory" = "Это сочетание уже открывает историю.";
 "ShortcutUsedByAddToList" = "Это сочетание уже добавляет в список.";
 "AddToListTurnedOff" = "Выключено: совпадало с «Открыть историю»";
-"BasedOnMaccyLine" = "Основано на Maccy, автор Alex Rodionov (MIT)";
+"CopyrightLine" = "© 2026 Eduard Ivanov";
 
 /* Sounds (Maccy/Sounds/SoundPlayer.swift) */
 "Sounds" = "Звуки";
@@ -141,3 +141,10 @@
 "SoundOnCopyTooltip" = "При копировании через ⌘C и выборе записи из истории. Не звучит, если в настройках «Звук» выключено «Звуковые эффекты интерфейса».";
 "SoundOnListTooltip" = "Два коротких штриха — слышно, что это список. Не звучит, если в настройках «Звук» выключено «Звуковые эффекты интерфейса».";
 "SoundOnListNeedsShortcut" = "Сначала задайте сочетание «Добавить в список».";
+
+/* In-app updates (Maccy/SoftwareUpdater.swift) */
+"CheckForUpdatesAutomatically" = "Проверять обновления автоматически";
+"CheckForUpdates" = "Проверить обновления…";
+"CheckForUpdatesTooltip" = "Раз в день Multipasta проверяет на GitHub, вышла ли новая версия, и предлагает её установить. GitHub видит ваш IP-адрес и версию приложения, как при любой загрузке; буфер обмена никуда не уходит.";
+"LastChecked %@" = "Последняя проверка: %@";
+"UpdateTo %@" = "Обновить до %@…";

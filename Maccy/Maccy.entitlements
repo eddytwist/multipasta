@@ -2,5 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Multipasta is signed with a self-signed certificate, which has no Team ID. The hardened
+	     runtime then refuses to load the embedded Sparkle.framework ("different Team IDs") unless
+	     library validation is off. The framework is part of the signed bundle either way. -->
+	<key>com.apple.security.cs.disable-library-validation</key>
+	<true/>
 </dict>
 </plist>

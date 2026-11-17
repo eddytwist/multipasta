@@ -31,8 +31,10 @@ class FooterItem: Equatable, Identifiable, HasVisibility {
     help: LocalizedStringKey? = nil,
     confirmation: Confirmation? = nil,
     suppressConfirmation: Binding<Bool>? = nil,
+    isVisible: Bool = true,
     action: @escaping () -> Void
   ) {
+    self.isVisible = isVisible
     self.title = title
     self.shortcuts = shortcuts
     self.help = help

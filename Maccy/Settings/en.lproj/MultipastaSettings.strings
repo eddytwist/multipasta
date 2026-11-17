@@ -8,9 +8,9 @@
 "PasteOnEnterCaption" = "Otherwise Enter only copies; ⌥Enter does the opposite";
 "LaunchAtLogin" = "Launch at login";
 "About" = "About";
-"VersionLine %@" = "Version %@ · Based on Maccy by Alex Rodionov (MIT)";
+"VersionLine %@" = "Version %@ · © 2026 Eduard Ivanov";
 "AboutApp %@" = "About %@…";
-"MaccyOnGitHub" = "GitHub";
+"RepositoryOnGitHub" = "GitHub";
 
 /* History tab */
 "HistorySize" = "History size";
@@ -132,7 +132,7 @@
 "ShortcutUsedByOpenHistory" = "This shortcut already opens the history.";
 "ShortcutUsedByAddToList" = "This shortcut already adds to the list.";
 "AddToListTurnedOff" = "Turned off: it was the same as Open history";
-"BasedOnMaccyLine" = "Based on Maccy by Alex Rodionov (MIT)";
+"CopyrightLine" = "© 2026 Eduard Ivanov";
 
 /* Sounds (Maccy/Sounds/SoundPlayer.swift) */
 "Sounds" = "Sounds";
@@ -141,3 +141,10 @@
 "SoundOnCopyTooltip" = "When you copy with ⌘C or choose an item from history. Silent when “Play user interface sound effects” is off in Sound settings.";
 "SoundOnListTooltip" = "Two short strokes, so you can tell a list from a copy. Silent when “Play user interface sound effects” is off in Sound settings.";
 "SoundOnListNeedsShortcut" = "Set the Add to list shortcut first.";
+
+/* In-app updates (Maccy/SoftwareUpdater.swift) */
+"CheckForUpdatesAutomatically" = "Check for updates automatically";
+"CheckForUpdates" = "Check for Updates…";
+"CheckForUpdatesTooltip" = "Once a day Multipasta checks GitHub for a new version and offers to install it. GitHub sees your IP address and the app's version, as with any download; your clipboard never leaves your Mac.";
+"LastChecked %@" = "Last checked %@";
+"UpdateTo %@" = "Update to %@…";

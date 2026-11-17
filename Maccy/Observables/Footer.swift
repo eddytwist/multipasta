@@ -5,6 +5,9 @@ import SwiftUI
 class Footer: ItemsContainer {
   var items: [FooterItem] = []
 
+  /// Multipasta: "Update Available…".
+  var updateItem: FooterItem? { items.first { $0.title == "update_available" } }
+
   var selectedItem: FooterItem? {
     willSet {
       selectedItem?.isSelected = false
@@ -56,6 +59,16 @@ class Footer: ItemsContainer {
       ) {
         Task { @MainActor in
           AppState.shared.history.clearAll()
+        }
+      },
+      // Multipasta: shown while an update found in the background waits (Maccy/SoftwareUpdater.swift).
+      FooterItem(
+        title: "update_available",
+        help: "update_available_tooltip",
+        isVisible: false
+      ) {
+        Task { @MainActor in
+          SoftwareUpdater.shared.checkForUpdates()
         }
       },
       FooterItem(
