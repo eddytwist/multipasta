@@ -23,8 +23,8 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
   Screenshots (English UI, docs/screenshots/):
   - popup-light.png / popup-dark.png: the history popup opened with ⇧⌘V over an app, a few text items, an image item,
     one pinned item, the search field at the top; light and dark appearance.
-  - settings-light.png / settings-dark.png: the Settings window, General tab (Open history shortcut, Paste on Enter,
-    Launch at login); light and dark appearance.
+  - settings-light.png / settings-dark.png: the Settings window, General tab (Open history and Add to list shortcuts,
+    Paste on Enter, Launch at login, the two sound switches); light and dark appearance.
   - quit-settings-light.png / quit-settings-dark.png: the Settings window, Quit tab, with Terminal and Safari in the
     list. (The HUD itself can't be shown from a UI test: it needs ⌘Q held in a real guarded app.)
   Made by MaccyUITests/ReadmeScreenshotTests.swift (sample data, in-memory history), run with
@@ -63,7 +63,7 @@ Free and open source, for macOS 14 Sonoma or later. No network connections at al
     <td width="60%" align="center">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/settings-dark.png">
-        <img alt="Settings, General tab: the shortcut to open the history, Paste on Enter, Launch at login" src="docs/screenshots/settings-light.png">
+        <img alt="Settings, General tab: shortcuts to open the history and add to a list, Paste on Enter, Launch at login, and switches for the copy and list sounds" src="docs/screenshots/settings-light.png">
       </picture>
       <p><sub>Three short tabs; the rest is under Advanced</sub></p>
     </td>
