@@ -8,7 +8,7 @@
 "PasteOnEnterCaption" = "Иначе только копирует; ⌥Enter — наоборот";
 "LaunchAtLogin" = "Запускать при входе";
 "About" = "О программе";
-"VersionLine %@" = "Версия %@ · © 2026 Eduard Ivanov";
+"VersionLine %@" = "Версия %@ · © 2026 eddytwist";
 "AboutApp %@" = "О программе %@…";
 "RepositoryOnGitHub" = "GitHub";
 
@@ -132,7 +132,7 @@
 "ShortcutUsedByOpenHistory" = "Это сочетание уже открывает историю.";
 "ShortcutUsedByAddToList" = "Это сочетание уже добавляет в список.";
 "AddToListTurnedOff" = "Выключено: совпадало с «Открыть историю»";
-"CopyrightLine" = "© 2026 Eduard Ivanov";
+"CopyrightLine" = "© 2026 eddytwist";
 
 /* Sounds (Maccy/Sounds/SoundPlayer.swift) */
 "Sounds" = "Звуки";
@@ -148,3 +148,7 @@
 "CheckForUpdatesTooltip" = "Раз в день Multipasta проверяет на GitHub, вышла ли новая версия, и предлагает её установить. GitHub видит ваш IP-адрес и версию приложения, как при любой загрузке; буфер обмена никуда не уходит.";
 "LastChecked %@" = "Последняя проверка: %@";
 "UpdateTo %@" = "Обновить до %@…";
+
+/* Main menu while a window is open (Maccy/WindowPolicy.swift) */
+"FileMenu" = "Файл";
+"CloseWindow" = "Закрыть";

@@ -87,6 +87,8 @@
 		DA20FA762B082E0800056DD5 /* Write.caf in Resources */ = {isa = PBXBuildFile; fileRef = DA20FA752B082E0800056DD5 /* Write.caf */; };
 		AB10F3022ED0000100A1B001 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F3012ED0000100A1B001 /* SoundPlayer.swift */; };
 		AB10F3082ED0000100A1B001 /* SoftwareUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F3072ED0000100A1B001 /* SoftwareUpdater.swift */; };
+		AB10F4022ED0000100A1B001 /* WindowPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F4012ED0000100A1B001 /* WindowPolicy.swift */; };
+		AB10F4042ED0000100A1B001 /* WindowPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F4032ED0000100A1B001 /* WindowPolicyTests.swift */; };
 		AB10F3042ED0000100A1B001 /* WriteDouble.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB10F3032ED0000100A1B001 /* WriteDouble.caf */; };
 		AB10F3062ED0000100A1B001 /* SoundPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F3052ED0000100A1B001 /* SoundPlayerTests.swift */; };
 		AB10F30A2ED0000100A1B001 /* SoftwareUpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F3092ED0000100A1B001 /* SoftwareUpdaterTests.swift */; };
@@ -298,6 +300,8 @@
 		DA20FA752B082E0800056DD5 /* Write.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Write.caf; sourceTree = "<group>"; };
 		AB10F3012ED0000100A1B001 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		AB10F3072ED0000100A1B001 /* SoftwareUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareUpdater.swift; sourceTree = "<group>"; };
+		AB10F4012ED0000100A1B001 /* WindowPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowPolicy.swift; sourceTree = "<group>"; };
+		AB10F4032ED0000100A1B001 /* WindowPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowPolicyTests.swift; sourceTree = "<group>"; };
 		AB10F3032ED0000100A1B001 /* WriteDouble.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WriteDouble.caf; sourceTree = "<group>"; };
 		AB10F3052ED0000100A1B001 /* SoundPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayerTests.swift; sourceTree = "<group>"; };
 		AB10F3092ED0000100A1B001 /* SoftwareUpdaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareUpdaterTests.swift; sourceTree = "<group>"; };
@@ -616,6 +620,7 @@
 				AB10F2032ED0000100A1B001 /* ListCopyTests.swift */,
 				AB10F3052ED0000100A1B001 /* SoundPlayerTests.swift */,
 				AB10F3092ED0000100A1B001 /* SoftwareUpdaterTests.swift */,
+				AB10F4032ED0000100A1B001 /* WindowPolicyTests.swift */,
 				DA360DB41E3DF137005C6F6B /* Info.plist */,
 				4CB7148030897A9E00A357EC /* SharedStateTests.swift */,
 			);
@@ -756,6 +761,7 @@
 				DA689FCB2C1D1D510009B887 /* MenuIcon.swift */,
 				DA20FA712B082DD600056DD5 /* Notifier.swift */,
 				AB10F3072ED0000100A1B001 /* SoftwareUpdater.swift */,
+				AB10F4012ED0000100A1B001 /* WindowPolicy.swift */,
 				2F0EC7802E773F1D003E2EA9 /* PasteStack.swift */,
 				DA689FC72C1D15140009B887 /* PinsPosition.swift */,
 				DA689FC52C1D14F10009B887 /* PopupPosition.swift */,
@@ -972,6 +978,7 @@
 				AB10F2042ED0000100A1B001 /* ListCopyTests.swift in Sources */,
 				AB10F3062ED0000100A1B001 /* SoundPlayerTests.swift in Sources */,
 				AB10F30A2ED0000100A1B001 /* SoftwareUpdaterTests.swift in Sources */,
+				AB10F4042ED0000100A1B001 /* WindowPolicyTests.swift in Sources */,
 				CA110ED10000000000000001 /* CollectionSurroundingTests.swift in Sources */,
 				C0FFEE000000000000000003 /* ShortenedTests.swift in Sources */,
 				FFFC00000000000000000003 /* UnsafeForTitleLayoutTests.swift in Sources */,
@@ -1090,6 +1097,7 @@
 				DA20FA722B082DD600056DD5 /* Notifier.swift in Sources */,
 				AB10F3022ED0000100A1B001 /* SoundPlayer.swift in Sources */,
 				AB10F3082ED0000100A1B001 /* SoftwareUpdater.swift in Sources */,
+				AB10F4022ED0000100A1B001 /* WindowPolicy.swift in Sources */,
 				2FD4993E2FFBA57800149F02 /* PinManager.swift in Sources */,
 				2F578C3F2EFFE8720088B759 /* SlideoutController.swift in Sources */,
 				2F1B61CF301BE55F000905F9 /* EnumeratedForEach.swift in Sources */,
@@ -1472,7 +1480,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1488,7 +1496,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eddytwist.Multipasta;
 				PRODUCT_MODULE_NAME = Maccy;
 				PRODUCT_NAME = Multipasta;
@@ -1509,7 +1517,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1524,7 +1532,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eddytwist.Multipasta;
 				PRODUCT_MODULE_NAME = Maccy;
 				PRODUCT_NAME = Multipasta;

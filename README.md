@@ -6,7 +6,7 @@
 
 <p><b>A clipboard history in your menu bar that also stops ⌘Q from quitting the wrong app.</b></p>
 
-<p>Press ⇧⌘V, find anything you copied and paste it into the app you're in.<br>
+<p>Press ⌃⌘V, find anything you copied and paste it into the app you're in.<br>
 Free and open source, for macOS 14 Sonoma or later. Updates itself; nothing else goes online.</p>
 
 <p>
@@ -21,7 +21,7 @@ Free and open source, for macOS 14 Sonoma or later. Updates itself; nothing else
 
 <!--
   Screenshots (English UI, docs/screenshots/):
-  - popup-light.png / popup-dark.png: the history popup opened with ⇧⌘V over an app, a few text items, an image item,
+  - popup-light.png / popup-dark.png: the history popup opened with ⌃⌘V over an app, a few text items, an image item,
     one pinned item, the search field at the top; light and dark appearance.
   - settings-light.png / settings-dark.png: the Settings window, General tab (Open history and Add to list shortcuts,
     Paste on Enter, Launch at login, the two sound switches, the update switch and Check for Updates); light and dark
@@ -44,10 +44,10 @@ Free and open source, for macOS 14 Sonoma or later. Updates itself; nothing else
 
 - **Clipboard history.** Text, images and files, 500 items by default (100 to 999). Pinned items stay at the top or
   bottom and survive clearing.
-- **Paste where you are.** Press ⇧⌘V, type to search, press Return: the item is pasted into the front app. ⌥Return
+- **Paste where you are.** Press ⌃⌘V, type to search, press Return: the item is pasted into the front app. ⌥Return
   only copies it, ⌥⇧Return pastes it without formatting.
 - **Preview.** Images, files and text too long for its row open in a preview panel next to the list.
-- **List copy.** ⇧⌘C adds the selected text to a list, one line per copy; ⌘V pastes the whole list. The list is one
+- **List copy.** ⌃⌘C adds the selected text to a list, one line per copy; ⌘V pastes the whole list. The list is one
   item in the history, tagged LIST, and the format (plain lines, bullets or numbers) is in Settings → Advanced.
 - **Sounds.** A soft pen stroke when a copy is saved, a knock when you pick an item from the history, two strokes when
   a line goes into a list. Copies and lists each have their own switch in Settings → General.
@@ -87,7 +87,7 @@ Free and open source, for macOS 14 Sonoma or later. Updates itself; nothing else
    open it and drag **Multipasta** to Applications.
 2. Open Multipasta. macOS says it can't verify the app: close the message (don't move the app to the Trash).
 3. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. You do this once.
-4. Press ⇧⌘V, click **Settings…** → **Quit** → **Open System Settings** and turn on Multipasta under
+4. Press ⌃⌘V, click **Settings…** → **Quit** → **Open System Settings** and turn on Multipasta under
    **Accessibility**. Pasting, list copy and the ⌘Q guard need it.
 
 Step 3 is there because the app isn't notarized by Apple: I don't have a paid Apple Developer account. Releases are
@@ -159,18 +159,18 @@ List copy follows the same rules: what the history wouldn't save isn't added to 
 <details>
 <summary><b>When does a new list start?</b></summary>
 
-Press ⇧⌘C in any app and the selected text becomes the next line of the list; the whole list is on the clipboard, so
-⌘V pastes it. Once you paste it, with ⌘V or from the history, the next ⇧⌘C starts a new list. So does a ⇧⌘C more than
+Press ⌃⌘C in any app and the selected text becomes the next line of the list; the whole list is on the clipboard, so
+⌘V pastes it. Once you paste it, with ⌘V or from the history, the next ⌃⌘C starts a new list. So does a ⌃⌘C more than
 15 minutes after the last one (change the time or turn it off in **Settings → History → Advanced… → Lists**), after
-you pin the list, delete it or clear the history. The message after each ⇧⌘C shows the line number, and 1 means a new
+you pin the list, delete it or clear the history. The message after each ⌃⌘C shows the line number, and 1 means a new
 list.
 
 Multipasta learns about the paste when an app asks the clipboard for the list's text. Apps that read the clipboard
 themselves, such as other clipboard managers, ask for it too, so they may end a list early. For the same reason a list
 stays on this Mac: Universal Clipboard doesn't pass it to your iPhone or iPad.
 
-⇧⌘C is a shortcut in some apps (Chrome's developer tools, Finder); while Multipasta has it, they don't get it. Pick
-another one in Settings → General if you need theirs.
+Both shortcuts use Control so that ⇧⌘V (Paste and Match Style) and ⇧⌘C keep working in your apps. If another app
+needs ⌃⌘V or ⌃⌘C, pick different ones in Settings → General.
 
 </details>
 
@@ -187,8 +187,8 @@ apps, so ⌘Q isn't guarded until it's off. The Quit tab says when this happens.
 
 | Shortcut | Action |
 |---|---|
-| <kbd>⇧</kbd> <kbd>⌘</kbd> <kbd>V</kbd> | Open the history (change it in Settings → General) |
-| <kbd>⇧</kbd> <kbd>⌘</kbd> <kbd>C</kbd> | Add the selected text to the list (anywhere; change it in Settings → General) |
+| <kbd>⌃</kbd> <kbd>⌘</kbd> <kbd>V</kbd> | Open the history (change it in Settings → General) |
+| <kbd>⌃</kbd> <kbd>⌘</kbd> <kbd>C</kbd> | Add the selected text to the list (anywhere; change it in Settings → General) |
 | Type | Search |
 | <kbd>↑</kbd> <kbd>↓</kbd> | Move the selection |
 | <kbd>Return</kbd> | Paste into the front app (or only copy, with Paste on Enter off) |
@@ -244,4 +244,4 @@ keep Maccy's names to make merging upstream changes easier.
 
 [MIT](LICENSE). Multipasta is based on [Maccy](https://github.com/p0deje/Maccy) © Alex Rodionov, also MIT; his
 copyright notice is kept in [LICENSE](LICENSE). The pen and knock sounds come from Maccy too; the list sound is made from Maccy's pen sound. In-app updates use
-[Sparkle](https://sparkle-project.org) (MIT-style license, included in the app as `Sparkle-LICENSE.txt`). Changes © 2026 Eduard Ivanov · [eddytwist.com](https://eddytwist.com)
+[Sparkle](https://sparkle-project.org) (MIT-style license, included in the app as `Sparkle-LICENSE.txt`). Changes © 2026 [eddytwist](https://eddytwist.com)

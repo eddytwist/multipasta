@@ -143,6 +143,12 @@ class AppState: Sendable {
     }
     settingsWindowController?.show()
     settingsWindowController?.window?.orderFrontRegardless()
+    // Multipasta: raised without activation, the window may not become key (Maccy/WindowPolicy.swift).
+    WindowPolicy.update()
+    // Opening Settings is an explicit request: bring the window forward and give it the keyboard,
+    // or ⌘W and typing would go to the app that was in front (cooperative activation can refuse).
+    NSApp.activate(ignoringOtherApps: true)
+    settingsWindowController?.window?.makeKeyAndOrderFront(nil)
     #if DEBUG
     // README screenshots: no focus ring on the first switch when the Mac has keyboard
     // navigation turned on, which an argument can't turn off for one app.

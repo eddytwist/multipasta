@@ -12,7 +12,7 @@ Only the latest release gets fixes.
 - It keeps your clipboard history in its own database in `~/Library/Application Support/Multipasta/` and its settings
   in its own preferences (`com.eddytwist.Multipasta`). **Launch at login** adds it to your login items.
 - With Accessibility allowed, it sends ⌘V to the front app when you paste an item, and ⌘C when you press the
-  add-to-list shortcut (⇧⌘C by default), to copy the selected text into the list.
+  add-to-list shortcut (⌃⌘C by default), to copy the selected text into the list.
 - While your ⌘Q list isn't empty, it runs a keyboard event tap that acts only on ⌘Q in the apps on that list. With an
   empty list there is no event tap. Key presses are never recorded or stored.
 - It reads Maccy's clipboard history from Maccy's container only when you choose to import it. It works on a temporary

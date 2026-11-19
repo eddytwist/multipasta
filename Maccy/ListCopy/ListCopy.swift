@@ -7,7 +7,7 @@ import Sauce
 
 // Multipasta: list copy.
 //
-// The add-to-list shortcut (⇧⌘C by default) presses ⌘C in the front app, takes the copied
+// The add-to-list shortcut (⌃⌘C by default) presses ⌘C in the front app, takes the copied
 // text and appends it to the current list. The whole list goes on the clipboard and into
 // the history as one item, which is updated in place on each addition.
 //

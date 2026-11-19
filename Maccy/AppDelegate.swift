@@ -158,6 +158,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Multipasta: the add-to-list shortcut (Maccy/ListCopy).
     ListCopy.shared.start()
 
+    // Multipasta: ⌘W closes Settings; the keyboard goes back when it closes (Maccy/WindowPolicy.swift).
+    WindowPolicy.observe()
+
     // Multipasta: in-app updates (Maccy/SoftwareUpdater.swift). Tests stay offline, and a Debug
     // build doesn't offer to replace itself with a release unless asked (`-MultipastaUpdater YES`).
     #if DEBUG
@@ -179,6 +182,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+    // Multipasta: with a window open the app is in the Dock; a click there brings the window
+    // forward instead of the popup (Maccy/WindowPolicy.swift).
+    if WindowPolicy.hasOpenWindow {
+      WindowPolicy.reopen()
+      return true
+    }
     panel.toggle(height: AppState.shared.popup.height)
     return true
   }
